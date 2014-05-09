@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <style type="text/css">
+      label { width: 100%; }
+    </style>
+  </head>      
+  <body id="inven">
+    <form accept-charset="UTF-8" id="new_report">
+      <div style="margin:0;padding:0;display:inline">
+        <input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="pgAi9Q3p8baqCnCdK00HkzTgnR62f/IxJ9oPdvMDBaw=" />
+      </div>
+      <div data-role="page" id="demo-page1" data-url="demo-page1" >
+        <div data-role="header" id="heading" class="topheader">
+          <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+          <h1>Daily Inventory</h1>
+          <a style="float:right;" href="" onclick="cancelinv()">Cancel</a>
+          <div class="detail_db_inv">
+          <div>
+            <span class="spaninv">Date</span>
+            <span class="spaninv">Inv</span>
+            <span class="spaninv">Death</span>
+            <span class="spaninv">Sick</span>
+            <span class="spaninv">Ini</span>
+          </div>
+          <div>
+            <span class="spaninv" id="run_rep" style="font-size: 10px;"></span>
+            <span class="spaninv" id="run_inven"></span>
+            <span class="spaninv" id="run_death"></span>
+            <span class="spaninv" id="run_sick"></span>
+            <span class="spaninv" id="run_ini"></span>
+          </div> 
+          </div>
+        </div><!-- /header -->
+      
+        <div role="main" class="ui-content" style="margin-top:10px;">
+          <ul data-role="listview" data-inset="true">
+            <fieldset>
+            
+              <li data-role="fieldcontain">
+                <label for="month_of_inventory" class="select">Month Of Inventory</label></br>
+                <select name="select-choice-1" id="month_of_inventory" data-native-menu="true">
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                </li>
+                <li data-role="fieldcontain">
+                  <label for="date">Date</label>
+                  <input id="report_date" name="report[date]" type="date" >
+                </li>
+                <li data-role="fieldcontain">
+                  <fieldset data-role="controlgroup">
+                  <label for="death">Any pig deaths?</label>
+                      <input type="radio" name="radio-choice" id="radio-choice-1" value="yes" />
+                      <label for="radio-choice-1">Yes</label>
+
+                      <input type="radio" name="radio-choice" id="radio-choice-2" value="no" checked="checked"  />
+                      <label for="radio-choice-2">No</label>
+                  </fieldset>
+                </li>
+               </fieldset>
+              </ul>
+              <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
+                <li class="next"><a href="#" id="navpage23" data-transition="slide" onclick="check_pig_death()" ><i class='icon-chevron-right'><span class="nexttxtalign">NEXT</span></i></a></li>
+              </ul>
+              
+            </div>
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div> 
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <!-- <div data-role="footer" style="text-align: center;" >
+                  Cancel
+            </div> -->
+            <div data-role="panel" data-transition="slide" data-position="right" id="left-panel" >
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+          <div data-role="page" id="demo-page2" data-url="demo-page2" >
+            <div data-role="header" id="heading" class="topheader" >
+              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+              <h1>Daily Inventory</h1>
+              <a href="" onclick="cancelinv()" style="float:right">Cancel</a>
+            </div><!-- /header -->
+            <div role="main" class="ui-content">
+            <div>
+
+                  <label for="report_number_of_pig_deaths">Number of Pigs Death</label></br>
+                  <input type="number" id="report_number_of_pig_deaths" name="report[number_of_pig_deaths]" value="1" min="1" max="30" data-highlight="true" />
+                  <img src="images/minus.png" class="decri" onclick="decri1()"/> 
+                  <img src="images/plus.png" class="incri" onclick="incri1()"/> 
+            </div>
+              <ul data-role="listview"data-icon="false" data-filter="false" class='showastabs'>
+                <li class="back"><a href="#" data-transition="slide" onclick="back()"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
+                <li class="next"><a href="#demo-page2a" data-transition="slide" onclick="reason()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+              </ul>
+            </div>
+            
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div>  
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right" id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+          <div data-role="page" id="demo-page2a" data-url="demo-page2a" >
+            <div data-role="header" id="heading" class="topheader" >
+              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+              
+              <h1>Daily Inventory</h1>
+              <a href="#" onclick="invback()" style="float:left">Back</a>
+            </div><!-- /header -->
+            <div role="main" class="ui-content">
+             <ul data-role="listview" data-inset="true">
+              <fieldset>
+                <li data-role="fieldcontain" id="reasons">
+                </li>
+               </fieldset>
+              </ul>
+              <ul data-role="listview"data-icon="false" data-filter="false" class='showastabs'>
+                <li class="back"><a href="#" data-transition="slide" onclick="back()"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
+                <li class="next"><a href="#" data-transition="slide" onclick="demopage3()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+              </ul>
+            </div>
+            
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right"  id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+          <div data-role="page" id="demo-page3" data-url="demo-page3">
+            <div data-role="header" id="heading" class="topheader">
+              
+              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+              <h1>Daily Inventory</h1>
+              <a href="" onclick="cancelinv()" style="float:right">Cancel</a>
+            </div><!-- /header -->
+            <div role="main" class="ui-content">
+              <ul data-role="listview" data-inset="true" id="run">
+                 <fieldset>
+                 <li data-role="fieldcontain">
+                  
+                    <label for="treatment">Are there any sick pigs?</label>
+                    <input type="radio" name="radio-choice" id="radio-choiceb-1" value="yes" />
+                    <label for="radio-choiceb-1">Yes</label>
+                    <input type="radio" name="radio-choice" id="radio-choiceb-2" value="no" checked="checked" />
+                    <label for="radio-choiceb-2">No</label>
+                </li>
+                </fieldset>
+              </ul>
+              <ul data-role="listview"data-icon="false" data-filter="false" class='showastabs' >
+                <li class="back"><a href="#" onclick="back()" data-transition="slide"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
+                <li class="next"><a href="#" id="navpage45" data-transition="slide" onclick="check_treat()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+                </ul>
+            </div>
+            
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right" id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+          <div data-role="page" id="demo-page4" data-url="demo-page4" > 
+            <div data-role="header" id="heading" class="topheader">
+              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+              
+              <h1>Daily Inventory</h1>
+              <a href="" onclick="cancelinv()" style="float:right">Cancel</a>
+            </div><!-- /header --> 
+            <div role="main" class="ui-content">
+              <div>
+                  <label for="report_number_of_pigs_treated">Number of Pigs Treated </label></br>
+                  <input type="number" id="report_number_of_pigs_treated" name="report[number_of_pigs_treated]" value="1" min="1" max="30" data-highlight="true" />
+                  <img src="images/minus.png" class="decri" onclick="decri2()"/> 
+                  <img src="images/plus.png" class="incri" onclick="incri2()"/> 
+
+              </div>  
+              <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
+                <li class="back"><a href="#" onclick="back()" data-transition="slide"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
+                <li class="next"><a href="#demo-page4a" data-transition="slide" onclick="treat()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+              </ul>  
+            </div>
+           
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right" id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+          <div data-role="page" id="demo-page4a" data-url="demo-page4a" > 
+            <div data-role="header" id="heading" class="topheader">
+              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+              
+              <h1>Daily Inventory</h1>
+             <a href="" onclick="cancelinv()" style="float:right">Cancel</a>
+            </div> 
+            <div role="main" class="ui-content">
+              <ul data-role="listview" data-inset="true" id="dosage_list">
+                <fieldset>
+                <li data-role="fieldcontain" id="medicine"> 
+                </li>
+              </ul>
+               <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
+                <li class="back"><a href="#" onclick="back()" data-transition="slide"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
+                <li class="next"><a href="#demo-page5" data-transition="slide" onclick="demo5()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+              </ul>   
+            </div>
+           
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right" id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+          <div data-role="page" id="demo-page5" data-url="demo-page5" > 
+            <div data-role="header" id="heading" class="topheader">
+              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+              
+              <h1>Daily Inventory</h1>
+              <a href="" onclick="cancelinv()" style="float:right">Cancel</a>
+            </div> 
+            <div role="main" class="ui-content">
+              <ul data-role="listview" data-inset="true" id="dosage_list">
+                <fieldset>
+                  <!-- <li data-role="fieldcontain" id="dosage_amount">
+                    <label for="report_amount_given">Dosage Amount for pig 1</label></br>
+                    <input class="form-control" id="report_amount_given" name="report[amount_given]" />
+                  </li> -->
+                   <li data-role="fieldcontain" id="dosage"> 
+                  </li>
+              </ul>
+              <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
+                <li class="back"><a href="#" data-transition="slide" onclick="back()" ><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
+                <li class="next"><a href="#demo-page6" data-transition="slide" onclick="demo6()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+              </ul>  
+            </div>
+            
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right" id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+          <div data-role="page" id="demo-page6" data-url="demo-page6" > 
+            <div data-role="header" id="heading" class="topheader">
+              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+              
+              <h1>Daily Inventory</h1>
+              <a href="" onclick="cancelinv()" style="float:right;">Cancel</a>
+            </div> 
+            <div role="main" class="ui-content">
+              <ul data-role="listview" data-inset="true" id="admins_list">
+                <fieldset>
+                  <!-- <li data-role="fieldcontain" id="adminstered">
+                    <label for="report_route_of_admin">How Administered for pig 1</label></br>
+                    <input class="form-control" id="report_route_of_admin" name="report[route_of_admin]" type="text" />
+                  </li> -->
+                  <li data-role="fieldcontain" id="adminis"> 
+                  </li>
+                </fieldset>
+              </ul>
+              <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
+                <li class="back"><a href="#" data-transition="slide" onclick="back()" ><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
+                <li class="next"><a href="#demo-page7" data-transition="slide"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+              </ul>  
+            </div>
+            
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div> 
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right"  id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div> 
+          <div data-role="page" id="demo-page7" data-url="demo-page7"> 
+            <div data-role="header" id="heading" class="topheader">
+              <!-- <a href="#left-panel" data-transition="slide"><i class='icon-reorder'></i></a> -->
+              
+              <h1>Daily Inventory</h1>
+              <a href="" onclick="cancelinv()" style="float:right">Cancel</a>
+            </div>
+            <div role="main" class="ui-content">
+              <ul data-role="listview" data-inset="true">
+                <fieldset>
+                  <li data-role="fieldcontain">
+                    <label for="report_initials">User Initials</label>
+                    <input class="form-control"  id="report_initials" name="initials" type="text" />
+                  </li>
+                </fieldset>
+                <button type="Submit" class="btn btn-labeled btn-primary">
+                  Submit
+                </button>
+              </ul>
+              <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
+                <li class="back"><a href="#" onclick="back()" data-transition="slide"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</a></li>
+              </ul>
+            </div>
+            
+            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+              <div class="footermenu3" onclick="db()">
+                <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3" onclick="user_logout();">
+                <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
+              </div>
+              <div class="footermenu3">
+                <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
+              </div>       
+            </div>
+            <div data-role="panel" data-transition="slide" data-position="right"  id="left-panel">
+              <ul data-role='listview'>
+                <li data-role="list-divider" id="heading_menu">Menu</li>
+                <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+                <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
+              </ul>
+             </div>
+          </div>
+        </form>   
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.mobile-1.3.2.min.js"></script>
+    <script src="js/nativedroid.script.js"></script>
+    <script src="js/authorize_page.js"></script>
+    <script src="js/page.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/bootstrap.touchspin.js"></script>
+    <script type="text/javascript">
+      $(document).on('pagebeforeshow', '#demo-page1', function(){ 
+    
+        var today = new Date();   
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();    
+        $('#report_date').val(dd + '-' + mm + '-' + yyyy); 
+        var to_rep =  window.localStorage.getItem('to_rep');
+        if (to_rep == "undefined"){ to_rep ="NA" }
+        $('#run_rep').text(to_rep);
+        var to_in =  window.localStorage.getItem('to_in');
+        if (to_in == "undefined"){ to_in ="NA" } 
+        $('#run_inven').text(to_in);
+        var to_initi =  window.localStorage.getItem('to_initi');
+        if (to_initi == "undefined"){ to_initi ="NA" }
+        $('#run_ini').text(to_initi);
+        var to_death =  window.localStorage.getItem('to_death');
+        if (to_death == "undefined"){ to_death ="NA" }
+        $('#run_death').text(to_death);
+        var to_sick =  window.localStorage.getItem('to_sick');
+        if (to_sick == "undefined"){ to_sick ="NA" }
+        $('#run_sick').text(to_sick);
+        });
+      function incri1(){
+        
+        var textval = parseInt($('#report_number_of_pig_deaths').val()) + 1;
+        // alert(textval);
+        $('#report_number_of_pig_deaths').val(textval);
+      }
+      function decri1(){
+        var textval = $('#report_number_of_pig_deaths').val()
+        if (textval>1) {
+            var res = parseInt(textval) - 1;
+            $('#report_number_of_pig_deaths').val(res);
+        }
+        else{
+          return false;
+        }
+      }
+      function incri2(){
+        
+        var textval = parseInt($('#report_number_of_pigs_treated').val()) + 1;
+        $('#report_number_of_pigs_treated').val(textval);
+      }
+      function decri2(){
+        var textval = $('#report_number_of_pigs_treated').val()
+        if (textval>1) {
+            var res = parseInt(textval) - 1;
+            $('#report_number_of_pigs_treated').val(res);
+        }
+        else{
+          return false;
+        }
+      }
+    </script>
+   </body>
+</html>
