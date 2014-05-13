@@ -54,7 +54,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />       
-    <gap:plugin name="com.adobe.plugins.pushplugin" version="1.3.3" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
 
 
     <icon src="icon.png" />
