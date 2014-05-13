@@ -51,7 +51,7 @@ var app = {
 
         },
         successHandler: function(result) {
-            alert('Callback Success! Result = '+result)
+            // alert('Callback Success! Result = '+result)
         },
         errorHandler:function(error) {
             alert(error);
