@@ -7,6 +7,7 @@ $(document).ready(function(){
      //alert("farms");
     if(role =="SiteManager"){
       var farm = window.localStorage.getItem('farm');
+      $("#smhead").hide();
       $.ajax({
         type: "GET",
         url: 'http://nano.amfnano.com/farms/'+farm+'/locations.json?user_credentials='+token,
@@ -246,7 +247,7 @@ function get_barns(){
      var last =  window.localStorage.getItem('last_name');
      var user = first +" "+ last ;
     //alert("barns");
-
+      var sitename = $('#db_farm1').text();
       //$("#barns_list").empty();
       $('#barns_list li:not(:first)').remove();   
         var $this = $(this),
@@ -281,6 +282,7 @@ function get_barns(){
            get_reading();
           $('#db_hog3').text(user);
           $('#db_location').text(name);
+          $('#site').text(sitename);
           $('#barns_list').listview('refresh');
          
           return false;

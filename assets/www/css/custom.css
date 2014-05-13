@@ -34,7 +34,7 @@ input {
    background-image: url("../images/top-bg.png");
    background-repeat:repeat;
    color: white;
-   margin-top: 0px;
+   /*margin-top: 0px;*/
 height: 42px;
 width: 100%;
 }
