@@ -50,6 +50,7 @@ $(function() {
         //alert(data.location_id);
         var role1 = window.localStorage.getItem('role');
         //alert(role1);
+        gcm_reg();
         if (role1 == "HogOwner"){
           //alert(role1);
           window.location ="main_dashboard.html"  
@@ -63,6 +64,7 @@ $(function() {
           // alert(role1);
           window.location ="main_dashboard.html#demo-page4"  
         }
+
         return false;
       },
       error: function(data,status){
@@ -84,3 +86,37 @@ $(function() {
   });
 
 });
+function gcm_reg(){
+  var token = window.localStorage.getItem('login_token');
+  var user_id = window.localStorage.getItem('id');
+  var regid =  window.localStorage.getItem('Regid');
+  var bookData = {
+                 "user_id": user_id,
+                 "regid": regid,
+             };
+   $.ajax({
+      type: "POST",
+      url: 'http://nano.amfnano.com/user_devices.json?user_credentials='+token,
+      crossDomain: true,
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(bookData),
+      dataType: "json",
+      cache: false,
+      success: function(data) {        
+        //alert(JSON.stringify(data));
+        alert("Push Notification activated");
+      },
+      error: function(data,status){
+        // alert(JSON.stringify(data));
+        // alert(status);
+      },
+
+      complete: function(data){
+          // alert('completed')
+      },
+
+      denied: function(data){
+            alert('Access denied');
+      }
+    }); 
+}

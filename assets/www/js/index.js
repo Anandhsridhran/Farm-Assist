@@ -63,9 +63,12 @@ var app = {
                 if ( e.regid.length > 0 )
                 {
                     console.log("Regid " + e.regid);
+                    window.localStorage.setItem('Regid', e.regid);
+                    var Regid =  window.localStorage.getItem('Regid');
+                    // alert(Regid);
                     // alert('registration id = '+e.regid);
                     // $("#app-status").val('REGISTERED -> REGID:' + e.regid );
-                    
+                    // <a href="mailto:?subject=subject of the email&body=whatever body body" target="_blank">send email</a>
                 }
             break;
  

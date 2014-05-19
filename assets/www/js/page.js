@@ -78,6 +78,7 @@ function back(){
 function reason(){
   var num = $('#report_number_of_pig_deaths').val();
   //alert(num);
+  if(num>0){
   $( "#reasons" ).empty();
   var j=1;
   for (i = 0; i < num; i++) {
@@ -106,10 +107,16 @@ function reason(){
     $('[type="text"]').textinput();    
     j= j+1;
   }
+  window.location="#demo-page2a";
+  }
+  else{
+    alert("Enter a valid number")
+  }
 };
 function treat(){
   var a = $('#report_number_of_pigs_treated').val();
   //alert(a);
+  if(a>0){
   $( "#medicine" ).empty();
   $( "#dosage" ).empty();
   $( "#adminis" ).empty();
@@ -117,14 +124,30 @@ function treat(){
   for (i = 0; i < a; i++) {
   var id = "inven_med"+j;
   var m1 = "Name of medicine given for pig" + j;
-  var m2 = $('<p>'+ m1 + '</p><input type="text" id='+id+' /><br></br>');
+  var m2 = $('<p>'+ m1 + '</p><input class="med_name" type="text" id='+id+' /><br></br>');
   //alert(id);
   m2.appendTo('#medicine');
   $('[type="text"]').textinput(); 
   j= j+1;
   }
+  window.location="#demo-page4a";
+  }
+  else{
+    alert("Enter a valid Number")
+  }
 }
 function demo5(){
+   var s = "success";
+  $('.med_name').each(function(){
+    if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
+      // alert("enter valid name");
+      s="fail";
+    }
+    else{
+      s="success";
+    }
+  });
+  if(s=="success"){
    $( "#dosage" ).empty();
   var j=1;
   // var name = $('#inven_med1').val();
@@ -133,33 +156,82 @@ function demo5(){
   for (i = 0; i < a; i++) {
   var id = "inven_dos"+j;  
   var d1 = "Dosage Amount for pig" + j;
-  var d2 = $('<p>'+ d1 + '</p><input type="text" id='+id+' /><br></br>');
+  var d2 = $('<p>'+ d1 + '</p><input class="dos_am" type="text" id='+id+' /><br></br>');
   d2.appendTo('#dosage');
   $('[type="text"]').textinput();
   j= j+1;
   }
   $('#index').trigger('create');
+ window.location = "#demo-page5";
+  }
+  else{
+    alert("enter valid name");
+  }
 }
 function demo6(){
+  var s = "success";
+  $('.dos_am').each(function(){
+    if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
+      // alert("enter valid name");
+      s="fail";
+    }
+    else{
+      s="success";
+    }
+  });
+  if(s=="success"){
   $( "#adminis" ).empty();
   var j=1;
   var a = $('#report_number_of_pigs_treated').val();
   for (i = 0; i < a; i++) {
     var id = "inven_adm"+j;  
     var h1 ="How Adminstered for Pig" + j;
-    var h2 = $('<p>'+ h1 + '</p><input type="text" id='+id+' /><br></br>');
+    var h2 = $('<p>'+ h1 + '</p><input class="admi" type="text" id='+id+' /><br></br>');
     h2.appendTo('#adminis');
     $('[type="text"]').textinput();
     j= j+1;
   }
+    window.location = "#demo-page6"; 
+  }
+  else{
+    alert("Enter valid data");
+  }
 }
-
+function demo7(){
+  var s = "success";
+  $('.admi').each(function(){
+    if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
+      // alert("enter valid name");
+      s="fail";
+    }
+    else{
+      s="success";
+    }
+  });
+  if(s=="success"){
+    window.location = "#demo-page7";
+  }
+  else{
+    alert("Enter Valid Data");
+  }
+}
 // shipments
 $(function() {    
 
   var token = window.localStorage.getItem('login_token');
 
   $('#new_shipment').on("submit", function(){        
+      var s = "success";
+  $('.ship').each(function(){
+    if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
+      // alert("enter valid name");
+      s="fail";
+    }
+    else{
+      s="success";
+    }
+  });
+  if(s=="success"){ 
       var shipment_date = $('#shipment_date').val();
       var shipid =  window.localStorage.getItem('shipid');
       var total_pigs = $('#total_pigs').val();
@@ -192,7 +264,7 @@ $(function() {
       },
       error: function(data,status){
         //alert(JSON.stringify(data));
-        alert(status);
+        // alert(status);
       },
 
       complete: function(data){
@@ -202,11 +274,24 @@ $(function() {
       denied: function(data){
             alert('Access denied')
       }
-    });   
-  });
+    }); 
+    } 
+    else{
+      alert("Enter Valid Data");
+      return false
+    }
+  });  
 
 
-  $('#new_report').on("submit", function(){        
+  $('#new_report').on("submit", function(){ 
+     var a = $("#report_initials").val();
+      // alert(a);
+      if(a ==""){
+        alert("Enter Valid Data");
+        return false
+      }
+      else{
+
       var shipid =  parseInt(window.localStorage.getItem('shipid'));
       var report_date = $('#report_date').val();
       var total_pig_deaths = $('#report_number_of_pig_deaths').val();
@@ -307,7 +392,8 @@ $(function() {
       }
     });
       // e.preventDefault();
-      return false  
+      return false 
+      } 
   });
 });
 function db(){
@@ -382,6 +468,9 @@ function inven(){
         var to_initi =  window.localStorage.getItem('to_initi');
         var to_death =  window.localStorage.getItem('to_death');
         var to_sick =  window.localStorage.getItem('to_sick');
+        var today = new Date(); 
+        
+       
 
         // alert(to_in);
           

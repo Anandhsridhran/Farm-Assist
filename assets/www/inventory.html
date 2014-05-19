@@ -121,7 +121,7 @@
             </div>
               <ul data-role="listview"data-icon="false" data-filter="false" class='showastabs'>
                 <li class="back"><a href="#" data-transition="slide" onclick="back()"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
-                <li class="next"><a href="#demo-page2a" data-transition="slide" onclick="reason()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+                <li class="next"><a href="#" data-transition="slide" onclick="reason()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
               </ul>
             </div>
             
@@ -149,7 +149,7 @@
               <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
               
               <h1>Daily Inventory</h1>
-              <a href="#" onclick="invback()" style="float:left">Back</a>
+              <a href="" onclick="cancelinv()" style="float:right">Cancel</a>
             </div><!-- /header -->
             <div role="main" class="ui-content">
              <ul data-role="listview" data-inset="true">
@@ -245,7 +245,7 @@
               </div>  
               <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
                 <li class="back"><a href="#" onclick="back()" data-transition="slide"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
-                <li class="next"><a href="#demo-page4a" data-transition="slide" onclick="treat()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+                <li class="next"><a href="#" data-transition="slide" onclick="treat()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
               </ul>  
             </div>
            
@@ -283,7 +283,7 @@
               </ul>
                <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
                 <li class="back"><a href="#" onclick="back()" data-transition="slide"><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
-                <li class="next"><a href="#demo-page5" data-transition="slide" onclick="demo5()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+                <li class="next"><a href="#" data-transition="slide" onclick="demo5()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
               </ul>   
             </div>
            
@@ -325,7 +325,7 @@
               </ul>
               <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
                 <li class="back"><a href="#" data-transition="slide" onclick="back()" ><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
-                <li class="next"><a href="#demo-page6" data-transition="slide" onclick="demo6()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+                <li class="next"><a href="#" data-transition="slide" onclick="demo6()"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
               </ul>  
             </div>
             
@@ -368,7 +368,7 @@
               </ul>
               <ul data-role="listview"data-icon="false" data-filter="false"class='showastabs'>
                 <li class="back"><a href="#" data-transition="slide" onclick="back()" ><i class='icon-chevron-left'></i><span class="nexttxtalign">PREVIOUS</span></a></li>
-                <li class="next"><a href="#demo-page7" data-transition="slide"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
+                <li class="next"><a href="#" onclick="demo7()" data-transition="slide"><i class='icon-chevron-right'></i><span class="nexttxtalign">NEXT</span></a></li>
               </ul>  
             </div>
             
@@ -444,13 +444,25 @@
     <script src="js/main.js"></script>
     <script src="js/bootstrap.touchspin.js"></script>
     <script type="text/javascript">
+    // $(document).ready(function(){
+    //    var dd = today.getDate();
+    //     var mm = today.getMonth()+1; //January is 0!
+    //     var yyyy = today.getFullYear();   
+    //     var date = dd + '-' + mm + '-' + yyyy;
+    //     // alert(date);
+    //     $('#report_date').val(date); 
+    // });
       $(document).on('pagebeforeshow', '#demo-page1', function(){ 
     
-        var today = new Date();   
+        var today = new Date(); 
+        // $('#report_date').val(today);
+        // alert(a);
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();    
-        $('#report_date').val(dd + '-' + mm + '-' + yyyy); 
+        var yyyy = today.getFullYear();   
+        var date = dd + '-' + mm + '-' + yyyy;
+        // alert(date);
+        $('#report_date').val(date); 
         var to_rep =  window.localStorage.getItem('to_rep');
         if (to_rep == "undefined"){ to_rep ="NA" }
         $('#run_rep').text(to_rep);
