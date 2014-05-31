@@ -104,13 +104,30 @@ $(document).ready(function(){
         cache: false,
         success: function(data) {
           window.location ="#demo-page4";
-          console.log(data)
+          if(data.temperatures.length === 0){
+            data.temperatures = "NA";
+            // alert(data.temperatures);
+             $('#temp').text(data.temperatures);
+          }
+          else{
+             $('#temp').text(data.temperatures[0].value+' F');
+          }
+          if(data.humidity == null){
+            data.humidity = "NA";
+            // alert(data.humidity);
+          }
+          if(data.system_status == null){
+            data.system_status = "NA";
+            // alert(data.system_status);
+          }
+          if(data.AC_power == null){
+            data.AC_power = "NA";
+            // alert(data.AC_power);
+          }
           $('#humidity').text(data.humidity+'%');
           $('#s_status').text(data.system_status);
-          $('#temp').text(data.temperatures[0].value+'F');
+          // $('#temp').text(data.temperatures[0].value+'F');
           $('#ac').text(data.AC_power);
-          $('#db_barn').text(data.barn_name);
-          $('#last_up').text('Last update on-'+ data.reported_at);
           if(data.system_status == "OK"){
             $("#statusimg").attr("src", "online.png");
           }
@@ -322,17 +339,30 @@ function get_barns(){
         dataType: "json",
         cache: false,
         success: function(data) {        
-          console.log(data);
+          if(data.temperatures.length === 0){
+            data.temperatures = "NA";
+            // alert(data.temperatures);
+             $('#temp').text(data.temperatures);
+          }
+          else{
+             $('#temp').text(data.temperatures[0].value+' F');
+          }
+          if(data.humidity == null){
+            data.humidity = "NA";
+            // alert(data.humidity);
+          }
+          if(data.system_status == null){
+            data.system_status = "NA";
+            // alert(data.system_status);
+          }
+          if(data.AC_power == null){
+            data.AC_power = "NA";
+            // alert(data.AC_power);
+          }
           $('#humidity').text(data.humidity+'%');
           $('#s_status').text(data.system_status);
           $('#temp').text(data.temperatures[0].value+' F');
-          //$('#low_temp').text(data.temperatures[1].value+'F');
-          // $('#air').text(data.air_quality);
-          // $('#co').text(data.CO);
           $('#ac').text(data.AC_power);
-          $('#last_up').text('Last update on-'+ data.reported_at);
-          $('#db_barn').text(data.barn_name);
-          $('#db_hog4').text(user);
           window.location ="#demo-page4";
            if(data.system_status == "OK"){
             $("#statusimg").attr("src", "online.png");

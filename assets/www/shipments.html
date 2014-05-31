@@ -20,7 +20,7 @@
               <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
               
               <h1>New Shipment</h1>
-              <a href="" onclick="cancelinv()" style="float:right;">Cancel</a>
+              <a href="main_dashboard.html#demo-page4" onclick="cancelinv()" style="float:right;">Cancel</a>
             </div><!-- /header -->
             <div role="main" class="ui-content">
             <div>
@@ -83,12 +83,15 @@
     <script src="js/bootstrap.touchspin.js"></script>
     <script type="text/javascript">
       $(document).on('pagebeforeshow', '#demo-page1', function(){ 
-    
-        var today = new Date();   
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();    
-        $('#shipment_date').val(dd + '-' + mm + '-' + yyyy);        
+        // var today = new Date();   
+        // var dd = today.getDate();
+        // var mm = today.getMonth()+1; //January is 0!
+        // var yyyy = today.getFullYear();    
+        // $('#shipment_date').val(dd + '-' + mm + '-' + yyyy);   
+        // var todaydate =  window.localStorage.getItem('todaydate');
+        // // todaydate.appendTo('#shipment_date');     
+        // // $('#shipment_date').attr('value',todaydate);
+        // document.getElementById('shipment_date').value = todaydate;
         });
         function incris(){
         var textval = parseInt($('#total_pigs').val()) + 1;
@@ -105,7 +108,10 @@
         }
       }
 
-    //   $(document).ready(function(){
+      $(document).ready(function(){
+        $('input').textinput(); 
+        var todaydate =  window.localStorage.getItem('todaydate');
+        document.getElementById('shipment_date').value = todaydate;
     //   function ind() {
     //   //alert("ddd");
     //   $("input[type='number']").TouchSpin({
@@ -118,7 +124,7 @@
     //         //prefix: '%'
     //     });
     //   }
-    // });
+    });
     </script>
   </body>
 </html>

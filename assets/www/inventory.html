@@ -66,15 +66,12 @@
                   <label for="date">Date</label>
                   <input id="report_date" name="report[date]" type="date" >
                 </li>
-                <li data-role="fieldcontain">
-                  <fieldset data-role="controlgroup">
-                  <label for="death">Any pig deaths?</label>
-                      <input type="radio" name="radio-choice" id="radio-choice-1" value="yes" />
+                 <li data-role="fieldcontain">
+                      <label for="death">Any pig deaths?</label>
+                      <input type="radio" name="radio-choice" class ="radio_death" id="radio-choice-1" value="yes" checked="checked" />
                       <label for="radio-choice-1">Yes</label>
-
-                      <input type="radio" name="radio-choice" id="radio-choice-2" value="no" checked="checked"  />
+                      <input type="radio" name="radio-choice" class ="radio_death" id="radio-choice-2" value="no"  />
                       <label for="radio-choice-2">No</label>
-                  </fieldset>
                 </li>
                </fieldset>
               </ul>
@@ -194,11 +191,10 @@
               <ul data-role="listview" data-inset="true" id="run">
                  <fieldset>
                  <li data-role="fieldcontain">
-                  
                     <label for="treatment">Are there any sick pigs?</label>
-                    <input type="radio" name="radio-choice" id="radio-choiceb-1" value="yes" />
+                    <input type="radio" name="radio-choice" class ="radio_treat" id="radio-choiceb-1" value="yes" />
                     <label for="radio-choiceb-1">Yes</label>
-                    <input type="radio" name="radio-choice" id="radio-choiceb-2" value="no" checked="checked" />
+                    <input type="radio" name="radio-choice" class ="radio_treat" id="radio-choiceb-2" value="no" checked="checked" />
                     <label for="radio-choiceb-2">No</label>
                 </li>
                 </fieldset>
@@ -461,8 +457,11 @@
         var mm = today.getMonth()+1; //January is 0!
         var yyyy = today.getFullYear();   
         var date = dd + '-' + mm + '-' + yyyy;
+        window.localStorage.setItem('todaydate', date);
+        var todaydate =  window.localStorage.getItem('todaydate');
+
         // alert(date);
-        $('#report_date').val(date); 
+        $('#report_date').val(todaydate); 
         var to_rep =  window.localStorage.getItem('to_rep');
         if (to_rep == "undefined"){ to_rep ="NA" }
         $('#run_rep').text(to_rep);
