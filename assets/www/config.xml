@@ -3,7 +3,7 @@
     <widget xmlns= "http://www.w3.org/ns/widgets"
         xmlns:gap= "http://phonegap.com/ns/1.0"
         id= "com.amfnano.farmscentral"
-        version= "1.0.3">
+        version= "1.0.4">
     <name>Farm Assist</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
