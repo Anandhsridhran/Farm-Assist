@@ -68,5 +68,5 @@ function uploadAll() {
 
   function fail(error) {
       //alert("An error has occurred. Please try again: Code = " = error.code);
-      alert();
+      // alert();
   }

@@ -457,7 +457,8 @@
         var mm = today.getMonth()+1; //January is 0!
         var yyyy = today.getFullYear();   
         var date = dd + '-' + mm + '-' + yyyy;
-        window.localStorage.setItem('todaydate', date);
+        var date1 = date.toString();
+        window.localStorage.setItem('todaydate', date1);
         var todaydate =  window.localStorage.getItem('todaydate');
 
         // alert(date);

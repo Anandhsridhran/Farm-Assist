@@ -261,7 +261,7 @@ $(function(){
       },
       error: function(data,status){
         //alert(JSON.stringify(data));
-        alert(status);
+        // alert("Shipment Not Created");
       },
 
       complete: function(data){
@@ -294,7 +294,7 @@ $(function(){
           var radeath =  window.localStorage.getItem('radiodeath');
           var ratreat =  window.localStorage.getItem('radiotreat');
           if(radeath == "yes"){
-            alert("checked"); 
+            // alert("checked"); 
             var td = total_pig_deaths;
             var pig_deaths_attributes;
             var temp_pig_deaths_attributes=[];
@@ -305,11 +305,11 @@ $(function(){
               temp_pig_deaths_attributes.push(pig_deaths_attributes);
               n = n+1;
             }
-            alert(temp_pig_deaths_attributes);
+            // alert(temp_pig_deaths_attributes);
           }
           else{
             temp_pig_deaths_attributes = [{"cause":"null","count": 0 }];
-            alert("no");
+            // alert("no");
           }
           var total_pigs_treated = $('#report_number_of_pigs_treated').val();
           var user_initials = $('#report_initials').val();
@@ -364,7 +364,7 @@ $(function(){
             return false
           },
           error: function(data,status){
-            alert("Required valid data"); 
+            // alert("Required valid data"); 
           },
 
           complete: function(data){

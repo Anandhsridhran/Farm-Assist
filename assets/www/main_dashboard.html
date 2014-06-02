@@ -124,7 +124,11 @@
   <div data-role="page" id="demo-page4" data-url="demo-page4"style="background: url(images/Systems.png);background-repeat: no-repeat; background-size:100% 100%;" >
   <div data-role="header" id="head1" style="background: url(images/Topbg.png);background-repeat: repeat;" >
     <div style="width:100%; float:left;">
-        <span style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold;">Farm Assist</span>
+        <span id="barntitle" style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold;">Farm Assist</span>
+    </div>
+    <div id="sectitle">
+       Hog Owner -<span id="db_hog4" ></span></br>
+       Site -<span id="db_location4" ></span> / <span id="site4"></span>
     </div>
     <!-- <a href="" onclick="backm()" style="float:right">Back</a>  -->
   </div><!-- /header -->
@@ -138,7 +142,7 @@
     </div>
 
 
-    <div id="box2" style="height:80%; padding:5px;">
+    <div id="box2" style="padding:5px;">
       <div style="width:100%; float:left;">
         <div id="sbox1" style="border-top:1px solid white; width:165px; height:50px; border-bottom:1px solid white; float:right;background: url(images/box-bg.png);background-repeat: repeat;">
         <div style="width:66%; float:left;">
@@ -168,7 +172,7 @@
               <span style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="ac">OK</span>
             </div>
             <div style="width:30%; float:left;"> 
-              <img src="images/s-box-image-3.png" style="width:80%;" />
+              <img id="powerimg" src="images/s-box-image-3.png" style="width:80%;" />
             </div>
           </div>
         </div>
@@ -184,10 +188,30 @@
           </div>
         </div>
         <div style="width:100%; float:left;">
-          <div id="sbox5" style="width:165px;height:55px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
+        <div id="sbox1" style="border-top:1px solid white; width:165px; height:50px; border-bottom:1px solid white; float:right;background: url(images/box-bg.png);background-repeat: repeat;">
+        <div style="width:66%; float:left;">
+          <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;" >Feed</span>
+           <span style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="s_feed">OK</span>
+        </div>
+        <div style="width:30%; float:left;">
+          <img id="feedimg" src="images/s-box-image-1.png" style="width:80%;" />
+        </div>
+        </div>
+      </div>
+        <div style="width:100%; float:left;">
+          <div id="sbox5" style="width:165px;height:70px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
            <div style="width:90%; float:left;">
-              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Current Inventory</span>
-              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="curr_inven"></span>
+              <!-- <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Current Inventory :  </span> -->
+                <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="curr_inven"></span>
+              
+<!-- 
+              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Pig Deaths : </span> -->
+                <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="death_pig_main"></span>
+              
+
+              <!-- <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Sick Pigs :</span> -->
+              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="sick_pig_main"></span>
+              
             </div>
           </div>
         </div>                 
@@ -196,7 +220,7 @@
     </div>
   </div>
   <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
-      <div class="footermenu5" onclick="backm()">
+      <div class="footermenu5" onclick="backbarn()">
         <a href="#"><img src="images/footer-image-7.png" style="height:100%;" /></a>
       </div>
       <div class="footermenu5" onclick="db()">

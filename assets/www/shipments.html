@@ -92,6 +92,13 @@
         // // todaydate.appendTo('#shipment_date');     
         // // $('#shipment_date').attr('value',todaydate);
         // document.getElementById('shipment_date').value = todaydate;
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();   
+        var date = dd + '-' + mm + '-' + yyyy;
+        var date1 = date.toString();
+        window.localStorage.setItem('todaydate', date1);
+        $('#shipment_date').val(todaydate); 
         });
         function incris(){
         var textval = parseInt($('#total_pigs').val()) + 1;
