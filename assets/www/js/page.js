@@ -35,25 +35,34 @@ function user_logout() {
 
 //Inventory.html
 function check_pig_death(){
-  if($('#radio-choice-1').is(':checked')) { 
-    // alert();
-    window.location ='#demo-page2'
-   }
-   else{
-        window.location ='#demo-page3'
-        } 
-        
+  if($('.radio_death').is(':checked')) { 
+    if($('#radio-choice-1').is(':checked')) { 
+      // alert();
+      window.location ='#demo-page2'
+    }
+    else{
+      window.location ='#demo-page3'
+    } 
+  }
+  else{
+    alert("Mention any Pig Deaths");
+  }    
   
 }
 function check_treat(){
-  if($('#radio-choiceb-1').is(':checked')) { 
-    //alert();
-    window.location ='#demo-page4'
-   }
-   else{
-        window.location ='#demo-page7'
-        }   
- }
+  if($('.radio_treat').is(':checked')) {  
+    if($('#radio-choiceb-1').is(':checked')) { 
+      //alert();
+      window.location ='#demo-page4'
+    }
+    else{
+      window.location ='#demo-page7'
+    }
+  }  
+  else{
+    alert("Mention any sick pig");
+  } 
+}
 
 function demopage3(){
   window.location ='#demo-page3'
@@ -308,7 +317,8 @@ $(function(){
             // alert(temp_pig_deaths_attributes);
           }
           else{
-            temp_pig_deaths_attributes = [{"cause":"null","count": 0 }];
+            // temp_pig_deaths_attributes = [{"cause":"null","count": 0 }];
+            // temp_pig_deaths_attributes = [];
             // alert("no");
           }
           var total_pigs_treated = $('#report_number_of_pigs_treated').val();
@@ -331,7 +341,8 @@ $(function(){
             }
           }
           else{
-            temp_pig_treatments = [{"medicine_given":"null", "count": 0, "dosage": "null" , "how_administered":"null" }];
+            // temp_pig_treatments = [{"medicine_given":"null", "count": 0, "dosage": "null" , "how_administered":"null" }];
+            // temp_pig_treatments = [];
           }
           
           
@@ -339,8 +350,8 @@ $(function(){
                      "barn_id": shipid,
                      "report_date": report_date,
                      "user_initials":user_initials,
-                      "pig_deaths_attributes":temp_pig_deaths_attributes,
-                      "pig_treatments_attributes":temp_pig_treatments
+                     "pig_deaths_attributes":temp_pig_deaths_attributes,
+                     "pig_treatments_attributes":temp_pig_treatments
                  };
            // alert(JSON.stringify(bookData));  
            // alert(bookData);
@@ -404,49 +415,50 @@ function ship(){
   window.location ='shipments.html';
 }
 function inven(){
-  var token = window.localStorage.getItem('login_token');
-  var shipid =  window.localStorage.getItem('shipid');
-  // window.location ='inventory.html';
-  $.ajax({
-        type: "GET",
-        url: 'http://nano.amfnano.com/barns/'+shipid+'/last_inventory_report.json?user_credentials='+token,
-        // dataType: "json",
-        crossDomain: true,
-        // cache: false,
-        success: function(data) { 
-        window.location ='inventory.html'
-        console.log(data);
-        // alert(); 
-        // alert(JSON.stringify(data));
+  window.location ='inventory.html#demo-page1';
+  // var token = window.localStorage.getItem('login_token');
+  // var shipid =  window.localStorage.getItem('shipid');
+  // // window.location ='inventory.html';
+  // $.ajax({
+  //       type: "GET",
+  //       url: 'http://nano.amfnano.com/barns/'+shipid+'/last_inventory_report.json?user_credentials='+token,
+  //       // dataType: "json",
+  //       crossDomain: true,
+  //       // cache: false,
+  //       success: function(data) { 
+  //       window.location ='inventory.html'
+  //       console.log(data);
+  //       // alert(); 
+  //       // alert(JSON.stringify(data));
         
-        window.localStorage.setItem('to_in', data.total_inventory);
-        window.localStorage.setItem('to_rep', JSON.stringify(data.report_date));
-        window.localStorage.setItem('to_initi', JSON.stringify(data.user_initials));
-        window.localStorage.setItem('to_death', JSON.stringify(data.total_pig_deaths));
-        window.localStorage.setItem('to_sick', JSON.stringify(data.total_pigs_treated));
-        var to_rep =  window.localStorage.getItem('to_rep');
-        var to_in =  window.localStorage.getItem('to_in');
-        var to_initi =  window.localStorage.getItem('to_initi');
-        var to_death =  window.localStorage.getItem('to_death');
-        var to_sick =  window.localStorage.getItem('to_sick');
-        // alert(to_in);
+  //       window.localStorage.setItem('to_in', data.total_inventory);
+  //       window.localStorage.setItem('to_rep', JSON.stringify(data.report_date));
+  //       window.localStorage.setItem('to_initi', JSON.stringify(data.user_initials));
+  //       window.localStorage.setItem('to_death', JSON.stringify(data.total_pig_deaths));
+  //       window.localStorage.setItem('to_sick', JSON.stringify(data.total_pigs_treated));
+  //       var to_rep =  window.localStorage.getItem('to_rep');
+  //       var to_in =  window.localStorage.getItem('to_in');
+  //       var to_initi =  window.localStorage.getItem('to_initi');
+  //       var to_death =  window.localStorage.getItem('to_death');
+  //       var to_sick =  window.localStorage.getItem('to_sick');
+  //       // alert(to_in);
           
           
-          // $("#test1 span").text("3kj");
+  //         // $("#test1 span").text("3kj");
           
-        },
-        error: function(data,status){
-          alert("Required Valid Data");
-        },
+  //       },
+  //       error: function(data,status){
+  //         alert("Required Valid Data");
+  //       },
 
-        complete: function(data){
-          // alert('completed')
-        },
+  //       complete: function(data){
+  //         // alert('completed')
+  //       },
 
-        denied: function(data){
-          alert('Access denied')
-        }
-      });
+  //       denied: function(data){
+  //         alert('Access denied')
+  //       }
+  //     });
 }
 function deta(){
   window.location = 'details.html';
@@ -456,68 +468,96 @@ function invback(){
   history.back();
 }
 function cancelinv(){
-  var token = window.localStorage.getItem('login_token');
-    // var first = window.localStorage.getItem('first_name');
-    //  var last =  window.localStorage.getItem('last_name');
-    //  var user = first +" "+ last ;
-    var shipid =  window.localStorage.getItem('shipid');
-    // var id = shipid;
-    // alert(shipid);
-    $.ajax({
-        type: "GET",
-        url: 'http://nano.amfnano.com/barns/'+shipid+'/last_reading.json?user_credentials='+token,
-        // dataType: "json",
-        crossDomain: true,
-        beforeSend: function() 
-        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
-        // cache: false,
-        success: function(data) { 
-          // alert(JSON.stringify(data));
-          if(data.temperatures.length === 0){
-            data.temperatures = "NA";
-            // alert(data.temperatures);
-             $('#temp').text(data.temperatures);
-          }
-          else{
-             $('#temp').text(data.temperatures[0].value+' F');
-          }
-          if(data.humidity == null){
-            data.humidity = "NA";
-            // alert(data.humidity);
-          }
-          if(data.system_status == null){
-            data.system_status = "NA";
-            // alert(data.system_status);
-          }
-          if(data.AC_power == null){
-            data.AC_power = "NA";
-            // alert(data.AC_power);
-          }
-          window.location ="main_dashboard.html#demo-page4";
-          $('#humidity').text(data.humidity+'%');
-          $('#s_status').text(data.system_status);
-          $('#temp').text(data.temperatures[0].value+'F');
-          $('#ac').text(data.AC_power);
-          if(data.system_status == "OK"){
-            $("#statusimg").attr("src", "online.png");
-          }
-          else{
-            $("#statusimg").attr("src", "offline.png")
-          } 
-          
-        },
-        error: function(data,status){
-          alert("Required Valid Data");
-        },
+  window.location ="main_dashboard.html#demo-page4";
+  // var token = window.localStorage.getItem('login_token');
+  //   var shipid =  window.localStorage.getItem('shipid');
+  //   $.ajax({
+  //       type: "GET",
+  //       url: 'http://nano.amfnano.com/barns/'+shipid+'/last_reading.json?user_credentials='+token,
+  //       crossDomain: true,
+  //       beforeSend: function() 
+  //       { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+  //       success: function(data) { 
+  //         alert(JSON.stringify(data));
+  //         window.location ="main_dashboard.html#demo-page4";
+  //         if(data == null){
+  //         $('#barntitle').text("Farm Central");
+  //         $('#humidity').text("N/A");
+  //         $('#s_status').text("N/A");
+  //         $('#temp').text("N/A");
+  //         $('#ac').text("N/A");
+  //         $('#s_feed').text("N/A");
+  //         $("#statusimg").attr("src", "offline.png");
+  //         $("#powerimg").attr("src", "offline.png");
+  //         $("#feedimg").attr("src", "offline.png");
+  //         }
+  //         else{
+  //           alert();
+  //         if(data.temperatures.length === 0){
+  //           data.temperatures = "NA";
+  //           // alert(data.temperatures);
+  //            $('#temp').text(data.temperatures);
+  //         }
+  //         else{
+  //            $('#temp').text(data.temperatures[0].value+' F');
+  //         }
+  //         if(data.ir_feeds.length === 0){
+  //           data.ir_feeds = "NA";
+  //           // alert(data.temperatures);
+  //            $('#s_feed').text(data.ir_feeds);
+  //         }
+  //         else{
+  //            $('#s_feed').text(data.ir_feeds[0].status);
+  //         }
+  //         if(data.humidity == null){
+  //           data.humidity = "NA";
+  //           // alert(data.humidity);
+  //         }
+  //         if(data.system_status == null){
+  //           data.system_status = "NA";
+  //           // alert(data.system_status);
+  //         }
+  //         if(data.AC_power == null){
+  //           data.AC_power = "NA";
+  //           // alert(data.AC_power);
+  //         }
+  //         $('#barntitle').text(data.barn_name);
+  //         $('#humidity').text(data.humidity+'%');
+  //         $('#s_status').text(data.system_status);
+  //         $('#ac').text(data.AC_power);
+  //          if(data.system_status == "OK"){
+  //           $("#statusimg").attr("src", "online.png");
+  //         }
+  //         else{
+  //           $("#statusimg").attr("src", "offline.png")
+  //         }
+  //         if(data.AC_power == "OK"){
+  //           $("#powerimg").attr("src", "images/s-box-image-3.png");
+  //         }
+  //         else{
+  //           $("#powerimg").attr("src", "offline.png")
+  //         }
+  //         if(data.ir_feeds[0].status == "OK"){
+  //           $("#feedimg").attr("src", "online.png");
+  //         }
+  //         else{
+  //           $("#feedimg").attr("src", "offline.png")
+  //         }
+  //         }
+  //         // alert("1-finished");
+  //         return false;      
+  //       },
+  //       error: function(data,status){
+  //         alert("Required Valid Data");
+  //       },
 
-        complete: function() 
-        { $.mobile.hidePageLoadingMsg(); },
+  //       complete: function() 
+  //       { $.mobile.hidePageLoadingMsg(); },
 
-        denied: function(data){
-          alert('Access denied')
-        }
-      });
-
+  //       denied: function(data){
+  //         alert('Access denied')
+  //       }
+  //     });
 }
 $(".radio_death").click(function(){
   var valu = $(this).val();

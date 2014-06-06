@@ -138,14 +138,14 @@ margin-right: 10px;
 .detail_db{
   background-color: #C8C8C8;
   color: #333;
-  font-size: 15px;
+  font-size: 13px;
   text-align: left;
   margin-bottom: 10px;
   text-align: center;
-  min-height: 30px;
-  /*margin-top: -15px;*/
+  width:100%;
+  padding: 8px;
   
-  padding: 10px;
+  
 }
 /*#tempbox{ 
   font-size: 40px;
@@ -205,6 +205,12 @@ margin-right: 10px;
   width: 20%;
   text-align: center;
 }
+.spaninv1{
+  /*font-size: 12px;*/
+  float:left;
+  width: 20%;
+  text-align: center;
+}
 .detail_db_inv{
   background-color: #C8C8C8;
   color: #333;
@@ -242,7 +248,47 @@ margin-right: 10px;
 }
 
 
+/******my own css start*********/
 
+body {
+    font-family:'Open Sans' sans-serif;
+}
+
+.topbox {
+    padding: 10px; height: 28px;
+}
+.topboxtitle {
+    font-size:20px; color:white; font-weight:bold;
+}
+
+.boxtitle1 {
+    font-size:16px; color:#000; font-weight:bold; float: left; width:100%;
+}
+
+.boxtitle2 {
+    font-size:20px; color:white; font-weight:bold; float: left; width:100%; text-shadow: 1px 1px black;
+}
+
+.rightbox {
+    border-top:1px solid white;
+     width:40%; 
+     height:15%; 
+     border-bottom:1px solid white; 
+     float:right;
+     padding:5px;     
+     background-image:url(images/Top-bg.png);
+}
+
+.rightboxtitle1 {
+    font-size:14px; color:white; font-weight:normal; float:left; width: 100%;
+}
+
+.rightboxtitle2 {
+    font-size:17px; color:white; font-weight:bold; float:left; width: 100%;
+}
+
+
+/******my own css start*********/
 
 
 

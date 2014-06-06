@@ -33,11 +33,12 @@
                   <input type='text' name='quantity' value='0' class='qty' />
                   <input type='button' value='+' class='qtyplus' field='quantity' /> -->
                   
-                  <input type="number" class="ship" id="total_pigs" name="shipment[number_of_pigs]" value="1" />
+                  
                   <!-- <a href=""><span style="padding: 5px 18px; font-size: 27px; color: #333; background-color: #ccc; font-family: arial; float: left;">-</span></a>
                   <a href=""><span style="padding: 5px 18px; font-size: 27px; color: #333; background-color: #ccc; font-family: arial; float: left;">+</span></a> -->
-                  <a href="#" onclick="decris()"><img src="images/minus.png" class="decri" /> </a>
-                  <a href="#" onclick="incris()"><img src="images/plus.png" class="incri"/></a>
+                  <a href="#" onclick="decris()"><img src="images/minus.png" class="decri" style="margin-top:3px;z-index:999999"  /> </a>
+                  <input type="number" class="ship" id="total_pigs" name="shipment[number_of_pigs]" value="1" />
+                  <a href="#" onclick="incris()"><img src="images/plus.png" class="incri" /></a>
             </div>
             <div>        
                   <label for="shipment_dead_on_arrival">Dead On Arrival</label>
@@ -83,30 +84,26 @@
     <script src="js/bootstrap.touchspin.js"></script>
     <script type="text/javascript">
       $(document).on('pagebeforeshow', '#demo-page1', function(){ 
-        // var today = new Date();   
-        // var dd = today.getDate();
-        // var mm = today.getMonth()+1; //January is 0!
-        // var yyyy = today.getFullYear();    
-        // $('#shipment_date').val(dd + '-' + mm + '-' + yyyy);   
-        // var todaydate =  window.localStorage.getItem('todaydate');
-        // // todaydate.appendTo('#shipment_date');     
-        // // $('#shipment_date').attr('value',todaydate);
-        // document.getElementById('shipment_date').value = todaydate;
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
+          function pad (str, max) {
+            str = str.toString();
+            return str.length < max ? pad("0" + str, max) : str;
+          }
+        var today = new Date(); 
+        var dd = pad(today.getDate(),2);
+        var mm = pad(today.getMonth()+1,2); //January is 0!
         var yyyy = today.getFullYear();   
-        var date = dd + '-' + mm + '-' + yyyy;
-        var date1 = date.toString();
-        window.localStorage.setItem('todaydate', date1);
-        $('#shipment_date').val(todaydate); 
+        var date = yyyy + '-' + mm + '-' + dd;
+        $('#shipment_date').val(date); 
         });
+
+
         function incris(){
-        var textval = parseInt($('#total_pigs').val()) + 1;
-        $('#total_pigs').val(textval);
-      }
-      function decris(){
-        var textval = $('#total_pigs').val()
-        if (textval>1) {
+          var textval = parseInt($('#total_pigs').val()) + 1;
+          $('#total_pigs').val(textval);
+        }
+        function decris(){
+          var textval = $('#total_pigs').val()
+          if (textval>1) {
             var res = parseInt(textval) - 1;
             $('#total_pigs').val(res);
         }
@@ -116,9 +113,9 @@
       }
 
       $(document).ready(function(){
-        $('input').textinput(); 
-        var todaydate =  window.localStorage.getItem('todaydate');
-        document.getElementById('shipment_date').value = todaydate;
+        // $('input').textinput(); 
+        // var todaydate =  window.localStorage.getItem('todaydate');
+        // document.getElementById('shipment_date').value = todaydate;
     //   function ind() {
     //   //alert("ddd");
     //   $("input[type='number']").TouchSpin({
@@ -132,6 +129,7 @@
     //     });
     //   }
     });
+
     </script>
   </body>
 </html>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
     <link rel="stylesheet" href="css/custom.css" />
   </head>
-<body id="main_db">
+<body id="main_db" style=" overflow-x:hidden;">
 <div data-role="page" id="demo-page1" data-url="demo-page1">
 
     <div data-role="header" id="heading" >
@@ -52,8 +52,8 @@
         <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
         <div style="text-align:center; padding-top: 2px;">
             <img src="images/mobile-logo-2.png" />
-        </div>
-        <a href="" onclick="backm()" style="float:right">Back</a>
+        </div >
+        <a href="" onclick="db()" style="float:right">Back</a>
         <div class="detail_db">
           <span id="smhead">Farm -</span><span id="db_farm1" class="span_db"></span></br>
           Hog Owner -<span id="db_hog2" class="span_db"></span> 
@@ -91,7 +91,7 @@
         <div style="text-align:center; padding-top: 2px;">
             <img src="images/mobile-logo-2.png" />
         </div>
-        <a href="" onclick="backm()" style="float:right">Back</a>
+        <a href="" id="backloc" onclick="clearloc()" style="float:right">Back</a>
         <div class="detail_db">
        Hog Owner -<span id="db_hog3" class="span_db"></span></br>
        Site -<span id="db_location" class="span_db"></span> / <span id="site"></span>
@@ -121,118 +121,219 @@
       </ul>
     </div>
   </div>
-  <div data-role="page" id="demo-page4" data-url="demo-page4"style="background: url(images/Systems.png);background-repeat: no-repeat; background-size:100% 100%;" >
-  <div data-role="header" id="head1" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+  <div data-role="page" id="demo-page4" data-url="demo-page4"style="background: url(images/Systems.png);background-repeat: no-repeat; background-size:100% 100%; overflow-x:hidden;" >
+  <div data-role="header" id="heading">
+        <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
+        <a href="" onclick="backbarn()" id="backbarn" style="float:right">Back</a>
+        <div style="text-align:center; padding-top: 2px;"> 
+            <span id="barntitle" class="topboxtitle" style="font-size:30px;">Farm Assist</span>
+        </div>
+        <div class="detail_db">
+          Hog Owner -<span id="db_hog4" ></span><br/>
+          Site -<span id="db_location4" ></span> / <span id="site4"></span>
+        </div>
+    </div>
+    <br></br>
+  <!-- <div data-role="header" id="head1" style="background: url(images/Topbg.png);background-repeat: repeat;height:60px;" >
     <div style="width:100%; float:left;">
         <span id="barntitle" style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold;">Farm Assist</span>
     </div>
     <div id="sectitle">
-       Hog Owner -<span id="db_hog4" ></span></br>
+       Hog Owner -<span id="db_hog4" ></span><br/>
        Site -<span id="db_location4" ></span> / <span id="site4"></span>
     </div>
-    <!-- <a href="" onclick="backm()" style="float:right">Back</a>  -->
-  </div><!-- /header -->
+  </div> -->
   <div role="main" class="ui-content">
-    <div id="box1" style="height:20%; padding:10px;">
-      <div style="width:100%; float:left;">
-        <span style="font-size:25px; color:black; font-family:'Open Sans' sans-serif; font-weight:bold; float: left; width:100%;">Temperature</span>
-        <span style="font-size:50px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float: left; width:100%; text-shadow: 1px 1px black;" id="temp">23&#176;F</span>
-        <img src="images/image-1.png" style="float:left; width:30%;" />
-      </div>
+    <div id="box1" style="height:10%; padding:10px; width:100%; float:left;">
+      <div style="float:left;">       
+        <span class="boxtitle1">Temperature</span>
+        <span class="boxtitle2" id="temp">23&#176;F</span>
+        <!-- <img src="images/image-1.png" style="float:left; width:50%;" /> -->
+        </div>
+        <!-- <div style="float:left; width:30%;" >
+        
+        </div>   -->    
     </div>
 
-
+    <div>
     <div id="box2" style="padding:5px;">
       <div style="width:100%; float:left;">
-        <div id="sbox1" style="border-top:1px solid white; width:165px; height:50px; border-bottom:1px solid white; float:right;background: url(images/box-bg.png);background-repeat: repeat;">
+        <div id="sbox1" class="rightbox">
         <div style="width:66%; float:left;">
-          <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;" >System Status</span>
-           <span style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="s_status">OK</span>
+          <span class="rightboxtitle1">System Status</span>
+           <span class="rightboxtitle2" id="s_status">OK</span>
         </div>
         <div style="width:30%; float:left;">
-          <img id="statusimg" src="images/s-box-image-1.png" style="width:80%;" />
+          <img id="statusimg" src="images/s-box-image-1.png" style="width:60%;" />
         </div>
         </div>
       </div>
-      <div style="width:100%; float:left;">
-        <div id="sbox2" style="width:165px; height:55px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
-          <div style="width:66%; float:left;">
-            <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Humidity</span>
-            <span style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="humidity">43%</span>
-          </div>
-          <div style="width:30%; float:left;">
-            <img src="images/s-box-image-2.png" style="width:80%;" />
-          </div>
-        </div>          
       </div>
+
+      <div id="box3" style="padding:5px;">
       <div style="width:100%; float:left;">
-        <div id="sbox3" style="width:165px; height:55px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
-           <div style="width:66%; float:left;">
-              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">AC Power</span>
-              <span style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="ac">OK</span>
-            </div>
-            <div style="width:30%; float:left;"> 
-              <img id="powerimg" src="images/s-box-image-3.png" style="width:80%;" />
-            </div>
-          </div>
-        </div>
-        <div style="width:100%; float:left;">
-          <div id="sbox4" style="width:165px; height:55px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
-           <div style="width:66%; float:left;">
-              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Events</span>
-              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="events">Water level Raised</span>
-            </div>
-            <div style="width:30%; float:left;"> 
-              <img src="images/s-box-image-4.png" style="width:80%;" />
-            </div>
-          </div>
-        </div>
-        <div style="width:100%; float:left;">
-        <div id="sbox1" style="border-top:1px solid white; width:165px; height:50px; border-bottom:1px solid white; float:right;background: url(images/box-bg.png);background-repeat: repeat;">
+        <div id="sbox1" class="rightbox" style="border-top:0;">
         <div style="width:66%; float:left;">
-          <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;" >Feed</span>
-           <span style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="s_feed">OK</span>
+          <span class="rightboxtitle1">Humidity</span>
+           <span class="rightboxtitle2" id="humidity">43%</span>
         </div>
         <div style="width:30%; float:left;">
-          <img id="feedimg" src="images/s-box-image-1.png" style="width:80%;" />
+          <img src="images/s-box-image-2.png" style="width:60%;" />
+          <!-- <img id="statusimg" src="images/s-box-image-1.png" style="width:60%;" /> -->
         </div>
         </div>
       </div>
-        <div style="width:100%; float:left;">
-          <div id="sbox5" style="width:165px;height:70px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
-           <div style="width:90%; float:left;">
-              <!-- <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Current Inventory :  </span> -->
-                <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="curr_inven"></span>
+      </div>
+
+
+      <div id="box4" style="padding:5px;">
+      <div style="width:100%; float:left;">
+        <div id="sbox1" class="rightbox" style="border-top:0;">
+        <div style="width:66%; float:left;">
+          <span class="rightboxtitle1">AC Power</span>
+           <span class="rightboxtitle2" id="ac">OK</span>
+        </div>
+        <div style="width:30%; float:left;">
+        <img id="powerimg" src="images/s-box-image-3.png" style="width:60%;" />
+          <!-- <img id="statusimg" src="images/s-box-image-1.png" style="width:60%;" /> -->
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <div id="box5" style="padding:5px;">
+      <div style="width:100%; float:left;">
+        <div id="sbox1" class="rightbox" style="border-top:0;">
+        <div style="width:66%; float:left;">
+          <span class="rightboxtitle1">Events</span>
+           <span class="rightboxtitle2"  style="font-size:11px;" id="events">Water level Raised</span>
+        </div>
+        <div style="width:30%; float:left;">
+          <img src="images/s-box-image-4.png" style="width:60%;" />
+          <!-- <img id="statusimg" src="images/s-box-image-1.png" style="width:60%;" /> -->
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <div id="box6" style="padding:5px;">
+      <div style="width:100%; float:left;">
+        <div id="sbox1" class="rightbox" style="border-top:0;">
+        <div style="width:66%; float:left;">
+          <span class="rightboxtitle1">Feed</span>
+           <span class="rightboxtitle2" id="s_feed">OK</span>
+        </div>
+        <div style="width:30%; float:left;">
+          <!-- <img id="statusimg" src="images/s-box-image-1.png" style="width:60%;" /> -->
+          <img id="feedimg" src="images/s-box-image-1.png" style="width:60%;" />
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <div id="box7" style="padding:5px;">
+      <div style="width:100%; float:left;">
+        <div id="sbox1" class="rightbox" style="border-top:0;">
+        <div style="width:100%; float:left;">             
+             <!-- <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Current Inventory :  </span> -->
+                <span class="rightboxtitle2" style="font-size:13px;" id="curr_inven"></span>
               
 <!-- 
               <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Pig Deaths : </span> -->
-                <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="death_pig_main"></span>
+                <span class="rightboxtitle2" style="font-size:13px;" id="death_pig_main"></span>
               
 
               <!-- <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:normal; float:left; width: 100%;">Sick Pigs :</span> -->
-              <span style="font-size:15px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="sick_pig_main"></span>
+              <span class="rightboxtitle2" style="font-size:13px;" id="sick_pig_main"></span>
+        </div>
+        
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+
+
+
+      <!-- <div style="width:100%; float:left;">
+        <div id="sbox2" style="width:50%; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
+          <div id="divbox2" class="titlebox">
+            <span class="boxtitle1">Humidity</span>
+            <span class="boxtitle2" id="humidity">43%</span>
+          </div>
+          <div style="width:20%; float:left;">
+            <img src="images/s-box-image-2.png" style="width:80%;" />
+          </div>
+        </div>          
+      </div> -->
+    <!--   <div style="width:100%; float:left;">
+        <div id="sbox3" style="width:50%; height:55px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
+           <div id="divbox3" class="titlebox">
+              <span class="boxtitle1">AC Power</span>
+              <span class="boxtitle2" id="ac">OK</span>
+            </div>
+            <div style="width:20%; float:left;"> 
+              <img id="powerimg" src="images/s-box-image-3.png" style="width:80%;" />
+            </div>
+          </div>
+        </div> -->
+        <!-- <div style="width:100%; float:left;">
+          <div id="sbox4" style="width:50%; height:55px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
+           <div id="divbox4" class="titlebox">
+              <span class="boxtitle1">Events</span>
+              <span class="boxtitle2"  style="font-size:11px;" id="events">Water level Raised</span>
+            </div>
+            <div style="width:20%; float:left;"> 
+              <img src="images/s-box-image-4.png" style="width:80%;" />
+            </div>
+          </div>
+        </div> -->
+        <!-- <div style="width:100%; float:left;">
+        <div id="sbox1" style="border-top:1px solid white; width:50%; height:50px; border-bottom:1px solid white; float:right;background: url(images/box-bg.png);background-repeat: repeat;">
+        <div id="divbox5" class="titlebox">
+          <span class="boxtitle1" >Feed</span>
+           <span class="boxtitle2" id="s_feed">OK</span>
+        </div>
+        <div style="width:20%; float:left;">
+          <img id="feedimg" src="images/s-box-image-1.png" style="width:80%;" />
+        </div>
+        </div>
+      </div> -->
+        <!-- <div style="width:100%; float:left;">
+          <div id="sbox5" style="width:50%;height:50px; border-bottom:1px solid white; float:right; background: url(images/box-bg.png);background-repeat: repeat;">
+           <div style="width:90%; float:left;padding-left:5px;">
+             
+                <span style="font-size:13px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="curr_inven"></span>
+              
+
+                <span style="font-size:13px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="death_pig_main"></span>
+              
+
+              
+              <span style="font-size:13px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold; float:left; width: 100%;" id="sick_pig_main"></span>
               
             </div>
           </div>
-        </div>                 
+        </div>  -->                
       </div>
-    <div >
-    </div>
-  </div>
+    <!-- <div >
+    </div> -->
+  <!-- </div> -->
   <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
-      <div class="footermenu5" onclick="backbarn()">
+      <!-- <div class="footermenu5" id="backbarn" onclick="clearbarn()">
         <a href="#"><img src="images/footer-image-7.png" style="height:100%;" /></a>
-      </div>
-      <div class="footermenu5" onclick="db()">
+      </div> -->
+      <div class="footermenu4" onclick="db()">
         <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
       </div>
-      <div class="footermenu5" onclick="inven()">
+      <div class="footermenu4" onclick="inven()">
         <a href="#"><img src="images/footer-image-2.png" style="height:100%;" /></a>
       </div>
-      <div class="footermenu5" onclick="ship()">
+      <div class="footermenu4" onclick="ship()">
         <a href="#"><img src="images/footer-image-3.png" style="height:100%;" /></a>
       </div>
-      <div class="footermenu5" onclick="user_logout();">
+      <div class="footermenu4" onclick="user_logout();">
         <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
       </div>       
       <!-- <div class="footermenu">
@@ -255,7 +356,216 @@
     <script src="js/authorize_page.js"></script>
     
     <script src="js/page.js"></script> 
-    <script src="js/get.js"></script>       
+    <script src="js/get.js"></script> 
+    <script type="text/javascript">
+      function clearloc(){
+        $('#locations_list li:not(:first)').remove();     
+      }
+      function clearbarn(){
+        $('#barns_list li:not(:first)').remove();
+      }
+      $(document).on('pagebeforeshow', '#demo-page4', function(){ 
+        // alert("abc");
+        var role = window.localStorage.getItem('role');
+        if(role !="BarnManager"){
+        var token = window.localStorage.getItem('login_token');
+        var first = window.localStorage.getItem('first_name');
+        var last =  window.localStorage.getItem('last_name');
+        var user = first +" "+ last ;
+        var id =  window.localStorage.getItem('shipid');
+        $.ajax({
+        type: "GET",
+        beforeSend: function() 
+        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+        complete: function() 
+        { $.mobile.hidePageLoadingMsg(); },
+        url: 'http://nano.amfnano.com/barns/'+id+'/last_reading.json?user_credentials='+token,
+        dataType: "json",
+        cache: false,
+        success: function(data) {        
+          // alert("1");
+          if(data == null){
+          $('#barntitle').text("Farm Central");
+          $('#humidity').text("N/A");
+          $('#s_status').text("N/A");
+          $('#temp').text("N/A");
+          $('#ac').text("N/A");
+          $('#s_feed').text("N/A");
+          $("#statusimg").attr("src", "offline.png");
+          $("#powerimg").attr("src", "offline.png");
+          $("#feedimg").attr("src", "offline.png");
+          }
+          else{
+          if(data.temperatures.length === 0){
+            data.temperatures = "NA";
+            // alert(data.temperatures);
+             $('#temp').text(data.temperatures);
+          }
+          else{
+             $('#temp').text(data.temperatures[0].value+' F');
+          }
+          if(data.ir_feeds.length === 0){
+            data.ir_feeds = "NA";
+            // alert(data.temperatures);
+             $('#s_feed').text(data.ir_feeds);
+          }
+          else{
+             $('#s_feed').text(data.ir_feeds[0].status);
+          }
+          if(data.humidity == null){
+            data.humidity = "NA";
+            // alert(data.humidity);
+          }
+          if(data.system_status == null){
+            data.system_status = "NA";
+            // alert(data.system_status);
+          }
+          if(data.AC_power == null){
+            data.AC_power = "NA";
+            // alert(data.AC_power);
+          }
+          $('#barntitle').text(data.barn_name);
+          $('#humidity').text(data.humidity+'%');
+          $('#s_status').text(data.system_status);
+          $('#ac').text(data.AC_power);
+           if(data.system_status == "OK"){
+            $("#statusimg").attr("src", "online.png");
+          }
+          else{
+            $("#statusimg").attr("src", "offline.png")
+          }
+          if(data.AC_power == "OK"){
+            $("#powerimg").attr("src", "images/s-box-image-3.png");
+          }
+          else{
+            $("#powerimg").attr("src", "offline.png")
+          }
+          if(data.ir_feeds[0].status == "OK"){
+            $("#feedimg").attr("src", "online.png");
+          }
+          else{
+            $("#feedimg").attr("src", "offline.png")
+          }
+          }
+          // alert("1-finished");
+          return false;
+        },
+        error: function(data,status){
+          alert('No Data Found')
+        },
+
+        complete: function(data){
+          // alert('completed')
+        },
+
+        denied: function(data){
+          alert('Access denied')
+        }
+      });
+
+      $.ajax({
+        type: "GET",
+        url: 'http://nano.amfnano.com/barns/'+id+'/last_event_report.json?user_credentials='+token,
+        dataType: "json",
+        cache: false,
+        success: function(data) {        
+          console.log(data);
+          // alert("2");
+          if(data == null){
+            $('#events').text("N/A");
+          }
+          else{
+          $('#events').text(data.description);
+          }
+          // alert("2-finished");
+          return false;
+          //alert(data);
+        },
+        error: function(data,status){
+          alert('No Data Found')
+        },
+
+        complete: function(data){
+          // alert('completed')
+        },
+
+        denied: function(data){
+          alert('Access denied')
+        }
+      });
+      $.ajax({
+        type: "GET",
+        url: 'http://nano.amfnano.com/barns/'+id+'/last_inventory_report.json?user_credentials='+token,
+        dataType: "json",
+        cache: false,
+        success: function(data) {  
+        // alert("3");
+        if(data == null){
+          $('#curr_inven').text("Current Inventory : N/A");
+          $('#death_pig_main').text("Pigs Death :N/A");
+          $('#sick_pig_main').text("Sick Pigs :N/A");
+        } 
+        else{
+        // alert();
+          var h = window.localStorage.getItem('hog3');
+          var d = window.localStorage.getItem('db_loca');
+          var s = window.localStorage.getItem('site');  
+          // var h = $('#db_hog3').text();
+          // var d = $('#db_location').text();
+          // var s = $('#site').text();
+          $('#db_hog4').text(h);
+          $('#db_location4').text(d);
+          $('#site4').text(s);
+          // $('#sectitle').hide();
+
+          var death_count = data.pig_deaths;
+          var val1 ="";
+          if(death_count.length > 0){
+            var b = death_count.length-1;
+            var last = death_count[b];
+            val1 = last.count;
+            }
+            else{
+              val1 =0;
+            }
+          
+          var sick_count = data.pig_treatments;
+          var val2 ="";
+          if(sick_count.length > 0){
+            var c = sick_count.length-1;
+            var last = sick_count[c];
+            val2 = last.count;
+            }
+            else{
+              val2 =0;
+            }
+          // alert(c);
+          // sick_count = data.pig_treatments;
+          $('#curr_inven').text("Current Inventory :"+data.total_inventory);
+          $('#death_pig_main').text("Pigs Death :"+val1);
+          $('#sick_pig_main').text("Sick Pigs :"+val2);
+          }   
+          // backbarn();
+          // alert("3-finished");
+          return false;
+        },
+        error: function(data,status){
+          alert('No Data Found')
+        },
+
+        complete: function(data){
+          // alert('completed')
+        },
+
+        denied: function(data){
+          alert('Access denied')
+        }
+      });
+    }
+  });
+ 
+
+    </script>      
 
 </body>
  
