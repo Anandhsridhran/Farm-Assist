@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="css/custom.css" />
   </head>
 <body id="main_db" style=" overflow-x:hidden;">
-<div data-role="page" id="demo-page1" data-url="demo-page1">
+<div data-role="page" id="demo-page1" data-url="demo-page1" style="margin-top:15px;">
 
     <div data-role="header" id="heading" >
-        <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
         <div style="text-align:center; padding-top: 2px;"> 
-            <img src="images/mobile-logo-2.png" />
+          <img src="images/mobile-logo-2.png" />
         </div>
-         <div class="detail_db">
+        <a href="#left-panel"><i class='icon-reorder'></i></a>
+        <a href="" onclick="db()" id="backfarms"><i class='icon-refresh'></i></a> 
+        <div class="detail_db" style=" overflow-x:hidden;">
           Hog Owner -<span id="db_hog1" class="span_db"></span> 
         </div>
     </div><!-- /header -->
@@ -28,7 +29,7 @@
     	  <li data-role="list-divider">Farms List</li>
     	</ul>
    	</div><!-- /content -->
-    <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+    <!-- <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
       <div class="footermenu3" onclick="db()">
         <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
       </div>
@@ -38,8 +39,8 @@
       <div class="footermenu3">
         <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%" /></a>
       </div>  
-  </div>
-   	<div data-role="panel" data-transition="slide" data-position="right"  id="left-panel">
+  </div> -->
+   	<div data-role="panel" data-transition="slide" data-position="left"  id="left-panel">
     	<ul data-role='listview'>
       		<li data-role="list-divider" id="heading_menu">Menu</li>
       		<li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
@@ -47,13 +48,14 @@
    		</ul>
     </div>
 </div>
-<div data-role="page" id="demo-page2"  data-url="demo-page2">
+<div data-role="page" id="demo-page2"  data-url="demo-page2" style="margin-top:15px;">
     <div data-role="header" id="heading" >
         <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
         <div style="text-align:center; padding-top: 2px;">
             <img src="images/mobile-logo-2.png" />
         </div >
-        <a href="" onclick="db()" style="float:right">Back</a>
+        <a href="#left-panel"><i class='icon-reorder'></i></a>
+        <a href="" onclick="db()" id="backfarms"><i class='icon-chevron-left'></i></a>
         <div class="detail_db">
           <span id="smhead">Farm -</span><span id="db_farm1" class="span_db"></span></br>
           Hog Owner -<span id="db_hog2" class="span_db"></span> 
@@ -66,7 +68,7 @@
       </ul>
    		
    	</div><!-- /content -->
-    <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+  <!--   <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
       <div class="footermenu3" onclick="db()">
         <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
       </div>
@@ -76,8 +78,8 @@
       <div class="footermenu3">
         <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
       </div>  
-    </div>
-   	<div data-role="panel" data-transition="slide" data-position="right"  id="left-panel">
+    </div> -->
+   	<div data-role="panel" data-transition="slide" data-position="left"  id="left-panel">
     	<ul data-role='listview'>
       		<li data-role="list-divider" id="heading_menu">Menu</li>
       		<li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
@@ -85,13 +87,13 @@
    		</ul>
     </div>
 </div>  
-<div data-role="page" id="demo-page3" data-url="demo-page3">
+<div data-role="page" id="demo-page3" data-url="demo-page3" style="margin-top:15px;">
     <div data-role="header" id="heading" >
-        <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
         <div style="text-align:center; padding-top: 2px;">
             <img src="images/mobile-logo-2.png" />
         </div>
-        <a href="" id="backloc" onclick="clearloc()" style="float:right">Back</a>
+        <a href="#left-panel"><i class='icon-reorder'></i></a>
+        <a href="" id="backloc1" onclick="loclis()"><i class='icon-chevron-left'></i></a>
         <div class="detail_db">
        Hog Owner -<span id="db_hog3" class="span_db"></span></br>
        Site -<span id="db_location" class="span_db"></span> / <span id="site"></span>
@@ -102,7 +104,7 @@
         <li data-role="list-divider">Barns List</li>
       </ul>
     </div><!-- /content -->
-    <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+    <!-- <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
       <div class="footermenu3" onclick="db()">
         <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
       </div>
@@ -112,8 +114,8 @@
       <div class="footermenu3">
         <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
       </div>  
-    </div>
-    <div data-role="panel" data-transition="slide" data-position="right" id="left-panel">
+    </div> -->
+    <div data-role="panel" data-transition="slide" data-position="left" id="left-panel">
       <ul data-role='listview'>
           <li data-role="list-divider" id="heading_menu">Menu</li>
           <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
@@ -121,38 +123,26 @@
       </ul>
     </div>
   </div>
-  <div data-role="page" id="demo-page4" data-url="demo-page4"style="background: url(images/Systems.png);background-repeat: no-repeat; background-size:100% 100%; overflow-x:hidden;" >
-  <div data-role="header" id="heading">
-        <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
-        <a href="" onclick="backbarn()" id="backbarn" style="float:right">Back</a>
-        <div style="text-align:center; padding-top: 2px;"> 
-            <span id="barntitle" class="topboxtitle" style="font-size:30px;">Farm Assist</span>
-        </div>
-        <div class="detail_db">
+  <div data-role="page" id="demo-page4" data-url="demo-page4" style="margin-top:15px;">
+    <div data-role="header" id="heading">
+        <div style="text-align:center; padding-top: 2px;">
+            <img src="images/mobile-logo-2.png" />
+        </div >
+        <a href="#left-panel"><i class='icon-reorder'></i></a>
+        <a href="" onclick="barnslis()" id="backbarn"><i class='icon-chevron-left'></i></a>
+    </div>
+  <div role="main" class="ui-content" style="background-color: #849BD0; width:100%; height:100%;">
+    <div id="box1" style="height:15%; padding:10px; width:100%; float:left;">
+      <div style="text-align: center;">
           Hog Owner -<span id="db_hog4" ></span><br/>
-          Site -<span id="db_location4" ></span> / <span id="site4"></span>
-        </div>
-    </div>
-    <br></br>
-  <!-- <div data-role="header" id="head1" style="background: url(images/Topbg.png);background-repeat: repeat;height:60px;" >
-    <div style="width:100%; float:left;">
-        <span id="barntitle" style="font-size:30px; color:white; font-family:'Open Sans' sans-serif; font-weight:bold;">Farm Assist</span>
-    </div>
-    <div id="sectitle">
-       Hog Owner -<span id="db_hog4" ></span><br/>
-       Site -<span id="db_location4" ></span> / <span id="site4"></span>
-    </div>
-  </div> -->
-  <div role="main" class="ui-content">
-    <div id="box1" style="height:10%; padding:10px; width:100%; float:left;">
-      <div style="float:left;">       
+          <span id="hid">Site -<span id="db_location4" ></span> / <span id="site4"></span></span>
+      </div>
+      <div style="float:left;">
+        <span id="barntitle" class="topboxtitle">Farm Assist</span>       
         <span class="boxtitle1">Temperature</span>
         <span class="boxtitle2" id="temp">23&#176;F</span>
         <!-- <img src="images/image-1.png" style="float:left; width:50%;" /> -->
-        </div>
-        <!-- <div style="float:left; width:30%;" >
-        
-        </div>   -->    
+      </div>  
     </div>
 
     <div>
@@ -320,10 +310,7 @@
     <!-- <div >
     </div> -->
   <!-- </div> -->
-  <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
-      <!-- <div class="footermenu5" id="backbarn" onclick="clearbarn()">
-        <a href="#"><img src="images/footer-image-7.png" style="height:100%;" /></a>
-      </div> -->
+  <!-- <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
       <div class="footermenu4" onclick="db()">
         <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
       </div>
@@ -336,17 +323,16 @@
       <div class="footermenu4" onclick="user_logout();">
         <a href="#"><img src="images/signout.png" style="height:100%;" /></a>
       </div>       
-      <!-- <div class="footermenu">
-        <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
-      </div>  --> 
-  </div>
-  <!-- <div data-role="panel" data-transition="slide" data-position="right" data-display="reveal" id="left-panel" style="background:none;">
+  </div> -->
+  <div data-role="panel" data-transition="slide" data-position="left" data-display="reveal" id="left-panel" style="background:none;">
       <ul data-role='listview'>
           <li data-role="list-divider" id="heading_menu">Menu</li>
           <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>
+          <li><a href="#" data-transition="slide" onclick="inven()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Inventory</a></li>
+          <li><a href="#" data-transition="slide" onclick="ship()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Shipment</a></li>
           <li><a href="#" data-ajoutax='false' data-transition="slide"  onclick="user_logout();" rel="external"><i class='icon-signout'></i> Logout</a></li>
       </ul>
-    </div> -->
+    </div>
     
   </div>
 
@@ -367,6 +353,12 @@
       $(document).on('pagebeforeshow', '#demo-page4', function(){ 
         // alert("abc");
         var role = window.localStorage.getItem('role');
+        if(role =="FarmOwner"){
+          $("#site4").hide();
+        }
+        if(role =="SiteManager"){
+          $("#site4").hide();
+        }
         if(role !="BarnManager"){
         var token = window.localStorage.getItem('login_token');
         var first = window.localStorage.getItem('first_name');
@@ -475,7 +467,7 @@
             $('#events').text("N/A");
           }
           else{
-          $('#events').text(data.description);
+            $('#events').text(data.description);
           }
           // alert("2-finished");
           return false;
@@ -499,7 +491,17 @@
         dataType: "json",
         cache: false,
         success: function(data) {  
-        // alert("3");
+        var first = window.localStorage.getItem('first_name');
+        var last =  window.localStorage.getItem('last_name');
+        var user = first +" "+ last ;
+
+        var d = window.localStorage.getItem('loc_name');
+        var s = window.localStorage.getItem('farm_name');  
+        
+        $('#db_hog4').text(user);
+        $('#db_location4').text(d);
+        $('#site4').text(s);
+
         if(data == null){
           $('#curr_inven').text("Current Inventory : N/A");
           $('#death_pig_main').text("Pigs Death :N/A");
@@ -507,17 +509,7 @@
         } 
         else{
         // alert();
-          var h = window.localStorage.getItem('hog3');
-          var d = window.localStorage.getItem('db_loca');
-          var s = window.localStorage.getItem('site');  
-          // var h = $('#db_hog3').text();
-          // var d = $('#db_location').text();
-          // var s = $('#site').text();
-          $('#db_hog4').text(h);
-          $('#db_location4').text(d);
-          $('#site4').text(s);
-          // $('#sectitle').hide();
-
+          
           var death_count = data.pig_deaths;
           var val1 ="";
           if(death_count.length > 0){
@@ -561,6 +553,10 @@
           alert('Access denied')
         }
       });
+    }
+    else{
+      $("#backbarn").hide();
+      $("#hid").hide();
     }
   });
  

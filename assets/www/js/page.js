@@ -35,14 +35,16 @@ function user_logout() {
 
 //Inventory.html
 function check_pig_death(){
-  if($('.radio_death').is(':checked')) { 
+  if($('.radio_death').is(':checked')) {
+  // var i_date = $('#report_date').val(); 
+  // window.localStorage.setItem('i_date', i_date);
+  // alert();
     if($('#radio-choice-1').is(':checked')) { 
-      // alert();
       window.location ='#demo-page2'
     }
     else{
       window.location ='#demo-page3'
-    } 
+    }
   }
   else{
     alert("Mention any Pig Deaths");
@@ -70,14 +72,28 @@ function demopage3(){
 }
 function demopage5(){
   history.back();
-  //window.location ='#demo-page5'
-  //location.reload();
 }
 function back(){
-  //window.location ='#demo-page1'
   history.back();
-  $('.list_view').listview().listview('refresh');
+  // var i_date = window.localStorage.getItem('i_date');
+  // $('#report_date').val(i_date);
 }
+function back1(){
+   history.back();
+  var i_date = window.localStorage.getItem('i_date');
+  $('#report_date').val(i_date);
+  alert(i_date);
+}
+// function back2(){
+//    history.back();
+//   var i_date = window.localStorage.getItem('i_date');
+//   $('#report_date').val(i_date);
+// }
+// function back3(){
+//    history.back();
+//   var i_date = window.localStorage.getItem('i_date');
+//   $('#report_date').val(i_date);
+// }
 
 function reason(){
   var num = $('#report_number_of_pig_deaths').val();
@@ -146,6 +162,7 @@ function demo5(){
     if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
       // alert("enter valid name");
       s="fail";
+      return false
     }
     else{
       s="success";
@@ -179,6 +196,7 @@ function demo6(){
     if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
       // alert("enter valid name");
       s="fail";
+      return false
     }
     else{
       s="success";
@@ -208,6 +226,7 @@ function demo7(){
     if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
       // alert("enter valid name");
       s="fail";
+      return false
     }
     else{
       s="success";
@@ -232,6 +251,7 @@ $(function(){
     if($(this).val()==null||$(this).val()==""||$(this).val()==undefined){
       // alert("enter valid name");
       s="fail";
+      return false
     }
     else{
       s="success";
@@ -292,8 +312,8 @@ $(function(){
   $('#new_report').on("submit", function(){        
       var a = $("#report_initials").val();
       // alert(a);
-      if(a ==""){
-        alert("Enter Valid Data");
+      if(a =="" || a.length > 5){
+        alert("Enter Initials with maximum of 5 character");
         return false
       }
       else{
@@ -397,7 +417,6 @@ function db(){
   if(role == "SiteManager"){
     // window.localStorage.removeItem('shipid');
     window.location="main_dashboard.html#demo-page2"
-
   }
   else if(role == "HogOwner"){
     // window.localStorage.removeItem('shipid');
@@ -406,6 +425,9 @@ function db(){
   else if(role == "BarnManager"){
     // window.localStorage.removeItem('shipid');
     window.location ="main_dashboard.html#demo-page4"  
+  }
+  else if(role == "FarmOwner"){
+    window.location="main_dashboard.html#demo-page2"
   }
 }
 

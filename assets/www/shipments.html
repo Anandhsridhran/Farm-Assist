@@ -15,11 +15,10 @@
         <form accept-charset="UTF-8" id="new_shipment">
           <div style="margin:0;padding:0;display:inline">
             <input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="DpG8kM+ZXG0GR71SKfbZfzeoCqWfipeiYBDNZ9kPLBk=" /></div>
-          <div data-role="page" id="demo-page1" data-url="demo-page1">
+          <div data-role="page" id="demo-page1" data-url="demo-page1" style="margin-top:15px;">
           <div data-role="header" id="heading" class="topheader">
-              <!-- <a href="#left-panel"><i class='icon-reorder'></i></a> -->
-              
               <h1>New Shipment</h1>
+               <a href="#left-panel"><i class='icon-reorder'></i></a>
               <a href="main_dashboard.html#demo-page4" onclick="cancelinv()" style="float:right;">Cancel</a>
             </div><!-- /header -->
             <div role="main" class="ui-content">
@@ -36,9 +35,9 @@
                   
                   <!-- <a href=""><span style="padding: 5px 18px; font-size: 27px; color: #333; background-color: #ccc; font-family: arial; float: left;">-</span></a>
                   <a href=""><span style="padding: 5px 18px; font-size: 27px; color: #333; background-color: #ccc; font-family: arial; float: left;">+</span></a> -->
-                  <a href="#" onclick="decris()"><img src="images/minus.png" class="decri" style="margin-top:3px;z-index:999999"  /> </a>
+                  <!-- <a href="#" onclick="decris()"><img src="images/minus.png" class="decri" style="margin-top:3px;z-index:999999"  /> </a> -->
                   <input type="number" class="ship" id="total_pigs" name="shipment[number_of_pigs]" value="1" />
-                  <a href="#" onclick="incris()"><img src="images/plus.png" class="incri" /></a>
+                  <!-- <a href="#" onclick="incris()"><img src="images/plus.png" class="incri" /></a> -->
             </div>
             <div>        
                   <label for="shipment_dead_on_arrival">Dead On Arrival</label>
@@ -54,7 +53,7 @@
                 </button>
              
             </div>
-            <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
+            <!-- <div data-role="footer" class="foot" data-position="fixed" style="background: url(images/Topbg.png);background-repeat: repeat;" >
               <div class="footermenu3" onclick="db()">
                 <a href="#"><img src="images/footer-image-1.png" style="height:100%;" /></a>
               </div>
@@ -64,8 +63,8 @@
               <div class="footermenu3">
                 <a href="#left-panel"><img src="images/footer-image-5.png" style="height:100%;" /></a>
               </div>       
-            </div>
-            <div data-role="panel" data-transition="slide" data-position="right" id="left-panel">
+            </div> -->
+            <div data-role="panel" data-transition="slide" data-position="left" id="left-panel">
               <ul data-role='listview'>
                 <li data-role="list-divider" id="heading_menu">Menu</li>
                 <li><a href="#" data-transition="slide" onclick="db()" data-ajax='false' rel="external"><i class='icon-dashboard'></i> Dashboard</a></li>

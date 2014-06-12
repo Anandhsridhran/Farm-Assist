@@ -1,18 +1,38 @@
+var token = window.localStorage.getItem('login_token');
+var role = window.localStorage.getItem('role');
+var first = window.localStorage.getItem('first_name');
+var last =  window.localStorage.getItem('last_name');
+var user = first +" "+ last ;
+
 $(document).ready(function(){
-     var token = window.localStorage.getItem('login_token');
-     var role = window.localStorage.getItem('role');
-     var first = window.localStorage.getItem('first_name');
-     var last =  window.localStorage.getItem('last_name');
-     var user = first +" "+ last ;
      //alert("farms");
     if(role =="SiteManager"){
-      var farm = window.localStorage.getItem('farm');
+      role_siteman();
+    }
+    else if(role =="HogOwner"){
+      role_hogon();
+    }
+    else if(role =="BarnManager"){
+      role_barnman();
+    }
+    else if(role =="FarmOwner"){
+      role_siteman();
+    }
+});
+
+function role_siteman(){
+     var farm = window.localStorage.getItem('farm');
+      $("#backfarms").hide();
       $("#smhead").hide();
       $.ajax({
         type: "GET",
         url: 'http://nano.amfnano.com/farms/'+farm+'/locations.json?user_credentials='+token,
         dataType: "json",
         cache: false,
+        beforeSend: function() 
+        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+        complete: function() 
+        { $.mobile.hidePageLoadingMsg(); },
         success: function(data) {
           // window.location ="#demo-page2";        
           list  = []
@@ -32,27 +52,33 @@ $(document).ready(function(){
           get_barns();
           $('#locations_list').listview('refresh');
           $('#db_hog2').text(user);
+          $('#db_farm1').hide();
           return false;
         },
         error: function(data,status){
           alert('No Data Found')
         },
 
-        complete: function(data){
-          // alert('completed')
-        },
+        // complete: function(data){
+        //   // alert('completed')
+        // },
 
         denied: function(data){
           alert('Access denied')
         }
       });
-    }
-    else if(role =="HogOwner"){
-    $.ajax({
+}
+
+function role_hogon(){
+     $.ajax({
       type: "GET",
       url: 'http://nano.amfnano.com/farms.json?user_credentials='+token,
       dataType: "json",
       cache: false,
+      beforeSend: function() 
+        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+      complete: function() 
+        { $.mobile.hidePageLoadingMsg(); },
       success: function(data) {
         console.log(data)
         list  = []
@@ -79,21 +105,17 @@ $(document).ready(function(){
       error: function(data,status){
         alert('No data Found')
       },
-
-      complete: function(data){
-        // alert('completed')
-        
-      },
-
       denied: function(data){
         alert('Access denied')
        
       }
 
     });
-    }
-    else if(role =="BarnManager"){
-      var id = window.localStorage.getItem('barn_id');
+}
+
+function role_barnman(){
+  // alert();
+   var id = window.localStorage.getItem('barn_id');
       window.localStorage.setItem('shipid', id);
       var shipid =  window.localStorage.getItem('barn_id');
       $('#db_hog4').text(user);
@@ -102,6 +124,10 @@ $(document).ready(function(){
         url: 'http://nano.amfnano.com/barns/'+id+'/last_reading.json?user_credentials='+token,
         dataType: "json",
         cache: false,
+        beforeSend: function() 
+        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+        complete: function() 
+        { $.mobile.hidePageLoadingMsg(); },
         success: function(data) {
           window.location ="#demo-page4";
           if(data.temperatures.length === 0){
@@ -137,9 +163,7 @@ $(document).ready(function(){
           $('#barntitle').text(data.barn_name);
           $('#humidity').text(data.humidity+'%');
           $('#s_status').text(data.system_status);
-          // $('#temp').text(data.temperatures[0].value+'F');
           $('#ac').text(data.AC_power);
-          // $('#s_feed').text(data.ir_feeds[0].status);
           if(data.system_status == "OK"){
             $("#statusimg").attr("src", "online.png");
           }
@@ -165,11 +189,6 @@ $(document).ready(function(){
         error: function(data,status){
           alert('No Data Found')
         },
-
-        complete: function(data){
-          // alert('completed')
-        },
-
         denied: function(data){
           alert('Access denied')
         }
@@ -179,6 +198,10 @@ $(document).ready(function(){
         url: 'http://nano.amfnano.com/barns/'+id+'/last_event_report.json?user_credentials='+token,
         dataType: "json",
         cache: false,
+        beforeSend: function() 
+        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+        complete: function() 
+        { $.mobile.hidePageLoadingMsg(); },
         success: function(data) {        
           console.log(data);
           $('#events').text(data.description);
@@ -187,9 +210,9 @@ $(document).ready(function(){
           alert('No Data Found')
         },
 
-        complete: function(data){
-          // alert('completed')
-        },
+        // complete: function(data){
+        //   // alert('completed')
+        // },
 
         denied: function(data){
           alert('Access denied')
@@ -200,13 +223,11 @@ $(document).ready(function(){
         url: 'http://nano.amfnano.com/barns/'+id+'/last_inventory_report.json?user_credentials='+token,
         dataType: "json",
         cache: false,
+        beforeSend: function() 
+        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+        complete: function() 
+        { $.mobile.hidePageLoadingMsg(); },
         success: function(data) {       
-          // var h = $('#db_hog3').text();
-          // var d = $('#db_location').text();
-          // var s = $('#site').text();
-          // $('#db_hog4').text(h);
-          // $('#db_location4').text(d);
-          // $('#site4').text(s);
           $('#sectitle').hide();
 
           var death_count = data.pig_deaths;
@@ -216,10 +237,9 @@ $(document).ready(function(){
             var last = death_count[b];
             val1 = last.count;
             }
-            else{
+          else{
               val1 =0;
             }
-          
           var sick_count = data.pig_treatments;
           var val2 ="";
           if(sick_count.length > 0){
@@ -238,17 +258,15 @@ $(document).ready(function(){
           alert('No Data Found')
         },
 
-        complete: function(data){
-          // alert('completed')
-        },
+        // complete: function(data){
+        //   // alert('completed')
+        // },
 
         denied: function(data){
           alert('Access denied')
         }
       });
-
-    }  
-});
+}
 
 
 function get_locations(){
@@ -258,62 +276,68 @@ function get_locations(){
       var first = window.localStorage.getItem('first_name');
       var last =  window.localStorage.getItem('last_name');
       var user = first +" "+ last ;     
-     //$('#locations_list').empty();  
-     $('#locations_list li:not(:first)').remove();   
-     var id = $(this).data('id');
-     window.localStorage.setItem('click_farm_id', id);
-      // var shipid =  window.localStorage.getItem('barn_id');
-     var name = $(this).data('name');
-    // $(“body”).fadeOut();
-    var farms = $(this).data('farms');
-    //alert(farms);
-      $.ajax({
-        type: "GET",
-        beforeSend: function() 
-        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
-        complete: function() 
-        { $.mobile.hidePageLoadingMsg(); },
-        url: 'http://nano.amfnano.com/farms/'+id+'/locations.json?user_credentials='+token,
-        dataType: "json",
-        cache: false,
-        success: function(data) {        
-          window.location ="#demo-page2";
-          list  = []
-          $.each(data, function(x, v) {
-             if(v.system_status=="OK"){
-              // var st_img = $('<img>',{src:'online.png'}); 
-              var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-
-            }
-            else{
-              // var st_img = $('<img>',{ src:'offline.png'});
-              var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-            }
-            list.push("<li>"+st_img+"<a href='#' data-transition='slide' data-id="+v.location_id+" data-location="+v.name+">"+v.name+"</a></li>")
-          });        
-          $('#locations_list').append(list);         
-          $('#db_hog2').text(user);
-          $('#db_farm1').text(name);
-          get_barns();
-          $('#locations_list').listview('refresh');
-          return false;
-        },
-        error: function(data,status){
-          alert('No Data Found')
-        },
-
-        complete: function(data){
-          // alert('completed')
-        },
-
-        denied: function(data){
-          alert('Access denied')
-        }
-      });
+      //$('#locations_list').empty();  
+      $('#locations_list li:not(:first)').remove();   
+      var id = $(this).data('id');
+      window.localStorage.setItem('click_farm_id', id);
+      var name = $(this).data('name');
+      window.localStorage.setItem('farm_name', name);
+      var farms = $(this).data('farms');
+      loclis();
    });
 }
 
-  function get_barns(){
+function loclis(){
+  var id = window.localStorage.getItem('click_farm_id');
+  var name =  window.localStorage.getItem('farm_name');
+ $('#locations_list li:not(:first)').remove();   
+ $.ajax({
+      type: "GET",
+      beforeSend: function() 
+      { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+      complete: function() 
+      { $.mobile.hidePageLoadingMsg(); },
+      url: 'http://nano.amfnano.com/farms/'+id+'/locations.json?user_credentials='+token,
+      dataType: "json",
+      cache: false,
+      success: function(data) {        
+        window.location ="#demo-page2";
+        list  = []
+        $.each(data, function(x, v) {
+           if(v.system_status=="OK"){
+            // var st_img = $('<img>',{src:'online.png'}); 
+            var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+
+          }
+          else{
+            // var st_img = $('<img>',{ src:'offline.png'});
+            var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+          }
+          list.push("<li>"+st_img+"<a href='#' data-transition='slide' data-id="+v.location_id+" data-location="+v.name+">"+v.name+"</a></li>")
+        });        
+        $('#locations_list').append(list);         
+        $('#db_hog2').text(user);
+        $('#db_farm1').text(name);
+        get_barns();
+        $('#locations_list').listview('refresh');
+        return false;
+      },
+      error: function(data,status){
+        alert('No Data Found')
+      },
+
+      complete: function(data){
+        // alert('completed')
+      },
+
+      denied: function(data){
+        alert('Access denied')
+      }
+    });
+}
+
+
+function get_barns(){
 
  
   $("#locations_list li a").on('click', function(){   
@@ -321,223 +345,248 @@ function get_locations(){
      var first = window.localStorage.getItem('first_name');
      var last =  window.localStorage.getItem('last_name');
      var user = first +" "+ last ;
-    //alert("barns");
-      var sitename = $('#db_farm1').text();
-      //$("#barns_list").empty();
+
       $('#barns_list li:not(:first)').remove();   
         var $this = $(this),
         id = $(this).data('id');
-         window.localStorage.setItem('loc_id', id);
+        window.localStorage.setItem('loc_id', id);
         var name = $(this).data('location');
-      $.ajax({
-        type: "GET",
-        beforeSend: function() 
-        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
-        complete: function() 
-        { $.mobile.hidePageLoadingMsg(); },
-        url: 'http://nano.amfnano.com/locations/'+id+'/barns.json?user_credentials='+token,
-        dataType: "json",
-        cache: false,
-        success: function(data) {                 
-          window.location ="#demo-page3"; 
-          list  = []
-          $.each(data, function(x, v) {
-             if(v.system_status=="OK"){
-              // var st_img = $('<img>',{src:'online.png'}); 
-              var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-
-            }
-            else{
-              // var st_img = $('<img>',{ src:'offline.png'});
-              var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-            }
-              list.push("<li>"+st_img+"<a href='#'data-transition='slide' data-id="+v.barn_id+">"+v.name+"</a></li>")
-          });        
-           $('#barns_list').append(list);         
-           get_reading();
-           backloc();
-          $('#db_hog3').text(user);
-          window.localStorage.setItem('hog3', user);
-          $('#db_location').text(name);
-          window.localStorage.setItem('db_loca', name);
-          $('#site').text(sitename);
-          window.localStorage.setItem('site', sitename);
-          $('#barns_list').listview('refresh');
-         
-          return false;
-        },
-        error: function(data,status){
-          alert('No Data Found')
-        },
-
-        complete: function(data){
-          // alert('completed')
-        },
-
-        denied: function(data){
-          alert('Access denied')
-        }
-      });
+        window.localStorage.setItem('loc_name', name);
+        barnslis();
    });
 }
 
-  function get_reading(){
-    
-    $("#barns_list li a").on('click', function(){        
-    var token = window.localStorage.getItem('login_token');
-    var first = window.localStorage.getItem('first_name');
-     var last =  window.localStorage.getItem('last_name');
-     var user = first +" "+ last ;
-    var id = $(this).data('id');
-    window.localStorage.setItem('shipid', id);
-    var shipid =  window.localStorage.getItem('shipid');
-     window.location ="#demo-page4";
-    
-   });
-  }
-
-
-  function backbarn(){
-    // alert("1");
-    $("#backbarn").on('click', function(){  
-      // alert("2");
-      $('#barns_list li:not(:first)').remove();   
-  // alert();
-  var token = window.localStorage.getItem('login_token');
-     var first = window.localStorage.getItem('first_name');
-     var last =  window.localStorage.getItem('last_name');
-     var user = first +" "+ last ;
-    //alert("barns");
-      // var sitename = $('#db_farm1').text();
-  // window.location="#demo-page3";
-  var loc_id = window.localStorage.getItem('loc_id');
-  $.ajax({
-        type: "GET",
-        beforeSend: function() 
-        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
-        complete: function() 
-        { $.mobile.hidePageLoadingMsg(); },
-        url: 'http://nano.amfnano.com/locations/'+loc_id+'/barns.json?user_credentials='+token,
-        dataType: "json",
-        cache: false,
-        success: function(data) {                 
-          window.location ="#demo-page3"; 
-          clearbarn();
-          list  = []
-          $.each(data, function(x, v) {
-             if(v.system_status=="OK"){
-              // var st_img = $('<img>',{src:'online.png'}); 
-              var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-
-            }
-            else{
-              // var st_img = $('<img>',{ src:'offline.png'});
-              var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-            }
-              list.push("<li>"+st_img+"<a href='#'data-transition='slide' data-id="+v.barn_id+">"+v.name+"</a></li>")
-          });        
-           $('#barns_list').append(list);         
-            // get_reading();
-            $('#barns_list').listview('refresh');
-          backloc();
-          get_reading()
-          $('#db_hog3').text(user);
-          $('#db_location').text(name);
-          $('#site').text(sitename);
-          $('#barns_list').listview('refresh');
-         
-          return false;
-        },
-        error: function(data,status){
-          alert('No Data Found')
-        },
-
-        complete: function(data){
-          // alert('completed')
-        },
-
-        denied: function(data){
-          alert('Access denied')
+function barnslis(){
+    $('#barns_list li:not(:first)').remove();   
+    var id = window.localStorage.getItem('loc_id');
+    var name = window.localStorage.getItem('loc_name');
+    var farm_name = window.localStorage.getItem('farm_name');
+    $.ajax({
+      type: "GET",
+      beforeSend: function() 
+      { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+      complete: function() 
+      { $.mobile.hidePageLoadingMsg(); },
+      url: 'http://nano.amfnano.com/locations/'+id+'/barns.json?user_credentials='+token,
+      dataType: "json",
+      cache: false,
+      success: function(data) {                 
+        window.location ="#demo-page3"; 
+        var role = window.localStorage.getItem('role');
+        if(role == "FarmOwner"){
+          $("#site").hide();
         }
-      });
-  });
+        else if(role == "SiteManager"){
+          $("#site").hide();
+        }
+        list  = []
+        $.each(data, function(x, v) {
+           if(v.system_status=="OK"){
+            // var st_img = $('<img>',{src:'online.png'}); 
+            var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+
+          }
+          else{
+            // var st_img = $('<img>',{ src:'offline.png'});
+            var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+          }
+            list.push("<li>"+st_img+"<a href='#'data-transition='slide' data-id="+v.barn_id+">"+v.name+"</a></li>")
+        });        
+         $('#barns_list').append(list);         
+         get_reading();
+        $('#db_hog3').text(user);
+        $('#db_location').text(name);
+        $('#site').text(farm_name);
+        $('#barns_list').listview('refresh');
+       
+        return false;
+      },
+      error: function(data,status){
+        alert('No Data Found')
+      },
+
+      complete: function(data){
+        // alert('completed')
+      },
+
+      denied: function(data){
+        alert('Access denied')
+      }
+    });
 }
 
-
-function backloc(){
-    $("#backloc").on('click', function(){
-    $('#locations_list li:not(:first)').remove(); 
-      var token = window.localStorage.getItem('login_token');
-      var first = window.localStorage.getItem('first_name');
-      var last =  window.localStorage.getItem('last_name');
-      var user = first +" "+ last ;     
-     //$('#locations_list').empty();  
-      var click_farm_id =  window.localStorage.getItem('click_farm_id');
-     var name = $(this).data('name');
-    // $(“body”).fadeOut();
-    var farms = $(this).data('farms');
-    //alert(farms);
-      $.ajax({
-        type: "GET",
-        beforeSend: function() 
-        { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
-        complete: function() 
-        { $.mobile.hidePageLoadingMsg(); },
-        url: 'http://nano.amfnano.com/farms/'+click_farm_id+'/locations.json?user_credentials='+token,
-        dataType: "json",
-        cache: false,
-        success: function(data) {        
-          window.location ="#demo-page2";
-          clearloc();    
-          list  = []
-          $.each(data, function(x, v) {
-             if(v.system_status=="OK"){
-              // var st_img = $('<img>',{src:'online.png'}); 
-              var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-
-            }
-            else{
-              // var st_img = $('<img>',{ src:'offline.png'});
-              var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
-            }
-            list.push("<li>"+st_img+"<a href='#' data-transition='slide' data-id="+v.location_id+" data-location="+v.name+">"+v.name+"</a></li>")
-          });        
-          $('#locations_list').append(list);         
-          get_barns();
-          $('#db_hog2').text(user);
-          $('#db_farm1').text(name);
-          $('#locations_list').listview('refresh');
-          
-          return false;
-        },
-        error: function(data,status){
-          alert('No Data Found')
-        },
-
-        complete: function(data){
-          // alert('completed')
-        },
-
-        denied: function(data){
-          alert('Access denied')
-        }
-      });
+function get_reading(){
   
-});
+  $("#barns_list li a").on('click', function(){        
+  var token = window.localStorage.getItem('login_token');
+  var first = window.localStorage.getItem('first_name');
+  var last =  window.localStorage.getItem('last_name');
+  var user = first +" "+ last ;
+  var id = $(this).data('id');
+  window.localStorage.setItem('shipid', id);
+  var shipid =  window.localStorage.getItem('shipid');
+   window.location ="#demo-page4";
+  
+ });
 }
 
 
-function clearloc(){
-  $('#locations_list li:not(:first)').remove();     
-}
 
-function clearbarn(){
-    $('#barns_list li:not(:first)').remove();
-}
 
-function barntest(){
-  alert("sd");
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   function backbarn(){
+//     // alert("1");
+//     $("#backbarn").on('click', function(){  
+//       // alert("2");
+//       $('#barns_list li:not(:first)').remove();   
+//   // alert();
+//   var token = window.localStorage.getItem('login_token');
+//      var first = window.localStorage.getItem('first_name');
+//      var last =  window.localStorage.getItem('last_name');
+//      var user = first +" "+ last ;
+//     //alert("barns");
+//       // var sitename = $('#db_farm1').text();
+//   // window.location="#demo-page3";
+//   var loc_id = window.localStorage.getItem('loc_id');
+//   $.ajax({
+//         type: "GET",
+//         beforeSend: function() 
+//         { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+//         complete: function() 
+//         { $.mobile.hidePageLoadingMsg(); },
+//         url: 'http://nano.amfnano.com/locations/'+loc_id+'/barns.json?user_credentials='+token,
+//         dataType: "json",
+//         cache: false,
+//         success: function(data) {                 
+//           window.location ="#demo-page3"; 
+//           clearbarn();
+//           list  = []
+//           $.each(data, function(x, v) {
+//              if(v.system_status=="OK"){
+//               // var st_img = $('<img>',{src:'online.png'}); 
+//               var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+
+//             }
+//             else{
+//               // var st_img = $('<img>',{ src:'offline.png'});
+//               var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+//             }
+//               list.push("<li>"+st_img+"<a href='#'data-transition='slide' data-id="+v.barn_id+">"+v.name+"</a></li>")
+//           });        
+//            $('#barns_list').append(list);         
+//             // get_reading();
+//             $('#barns_list').listview('refresh');
+//           // backloc();
+//           // get_reading()
+//           $('#db_hog3').text(user);
+//           $('#db_location').text(name);
+//           $('#site').text(sitename);
+//           $('#barns_list').listview('refresh');
+         
+//           return false;
+//         },
+//         error: function(data,status){
+//           alert('No Data Found')
+//         },
+
+//         complete: function(data){
+//           // alert('completed')
+//         },
+
+//         denied: function(data){
+//           alert('Access denied')
+//         }
+//       });
+//   });
+// }
+
+
+// function backloc(){
+//     $("#backloc").on('click', function(){
+//     $('#locations_list li:not(:first)').remove(); 
+//       var token = window.localStorage.getItem('login_token');
+//       var first = window.localStorage.getItem('first_name');
+//       var last =  window.localStorage.getItem('last_name');
+//       var user = first +" "+ last ;     
+//      //$('#locations_list').empty();  
+//       var click_farm_id =  window.localStorage.getItem('click_farm_id');
+//      var name = $(this).data('name');
+//     // $(“body”).fadeOut();
+//     var farms = $(this).data('farms');
+//     //alert(farms);
+//       $.ajax({
+//         type: "GET",
+//         beforeSend: function() 
+//         { $.mobile.showPageLoadingMsg("a", "Loading"); }, 
+//         complete: function() 
+//         { $.mobile.hidePageLoadingMsg(); },
+//         url: 'http://nano.amfnano.com/farms/'+click_farm_id+'/locations.json?user_credentials='+token,
+//         dataType: "json",
+//         cache: false,
+//         success: function(data) {        
+//           window.location ="#demo-page2";
+//           clearloc();    
+//           list  = []
+//           $.each(data, function(x, v) {
+//              if(v.system_status=="OK"){
+//               // var st_img = $('<img>',{src:'online.png'}); 
+//               var st_img = '<img src="online.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+
+//             }
+//             else{
+//               // var st_img = $('<img>',{ src:'offline.png'});
+//               var st_img = '<img src="offline.png" style="width:16px;height:16px;float:left; padding-left: 9px; padding-top: 12px;"/>'; 
+//             }
+//             list.push("<li>"+st_img+"<a href='#' data-transition='slide' data-id="+v.location_id+" data-location="+v.name+">"+v.name+"</a></li>")
+//           });        
+//           $('#locations_list').append(list);         
+//           // get_barns();
+//           $('#db_hog2').text(user);
+//           $('#db_farm1').text(name);
+//           $('#locations_list').listview('refresh');
+          
+//           return false;
+//         },
+//         error: function(data,status){
+//           alert('No Data Found')
+//         },
+
+//         complete: function(data){
+//           // alert('completed')
+//         },
+
+//         denied: function(data){
+//           alert('Access denied')
+//         }
+//       });
+  
+// });
+// }
+
+
+// function clearloc(){
+//   $('#locations_list li:not(:first)').remove();     
+// }
+
+// function clearbarn(){
+//     $('#barns_list li:not(:first)').remove();
+// }
+
+// function barntest(){
+//   alert("sd");
+// }
 
 function backm(){
   //window.location ='#demo-page1'

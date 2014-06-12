@@ -1,8 +1,33 @@
 $(window).load(function(){
 // $(document).on('pagebeforeshow', 'inventory.html#demo-page1', function(){ 
+  // $(".radio_death").attr("checked",true).checkboxradio("refresh");
 	get_data();
+  date();
+  // $(".radio_death").attr("checked",true).checkboxradio("refresh");
+  // $(".radio_treat").attr("checked",true).checkboxradio("refresh");
 });
+// $(document).ready(function(){
+//   $(".radio_death").attr("checked",true).checkboxradio("refresh");
+// });
+function date(){
+  function pad (str, max) {
+            str = str.toString();
+            return str.length < max ? pad("0" + str, max) : str;
+          }
+        var today = new Date(); 
+        var dd = pad(today.getDate(),2);
+        var mm = pad(today.getMonth()+1,2); //January is 0!
+        var yyyy = today.getFullYear();   
+        var date = yyyy + '-' + mm + '-' + dd;
+        $('#report_date').val(date); 
+         var months = [ "January", "February", "March", "April", "May", "June", 
+               "July", "August", "September", "October", "November", "December" ];
 
+        var selectedMonthName = months[today.getMonth()];
+        // alert(selectedMonthName);
+        $('#month_of_inventory').val(selectedMonthName)
+        $('select').selectmenu('refresh', true);
+}
 function get_data(){
 	var token = window.localStorage.getItem('login_token');
   	var id =  window.localStorage.getItem('shipid');

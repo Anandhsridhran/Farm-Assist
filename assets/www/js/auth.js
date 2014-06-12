@@ -21,6 +21,9 @@ $(function() {
   else if(role =="BarnManager"){   
     window.location ="main_dashboard.html#demo-page4"  
   } 
+  else if(role =="FarmOwner"){ 
+    window.location ="main_dashboard.html#demo-page2"
+  }
 
   $('#new_user_session').submit(function(e) {
     $('#menu').css('background-color','#004A7A');
@@ -33,6 +36,7 @@ $(function() {
       data: $(this).serialize(),
       cache: false,
       success: function(data) { 
+        // alert(JSON.stringify(data));
         $('#menu').css('background-color','rgb(0,125,208)');
       //alert();       
         // return value example {single_access_token: "hvq01zyIs9C2k1yDHXO3", username: "adminuser", location_id: 0} 
@@ -56,25 +60,26 @@ $(function() {
           window.location ="main_dashboard.html"  
         }
         else if(role1 =="SiteManager"){
-          // alert(role1);
-          //alert(location);
            window.location ="main_dashboard.html#demo-page2"
         }
         else if(role1 =="BarnManager"){
-          // alert(role1);
           window.location ="main_dashboard.html#demo-page4"  
         }
+        else if(role1 =="FarmOwner"){
+          window.location ="main_dashboard.html#demo-page2"  
+        }
+
 
         return false;
       },
       error: function(data,status){
         $('#menu').css('background-color','rgb(0,125,208)');
-        alert('Invalid username/password')
+        alert('Invalid username/password');
       },
 
-      complete: function(data){
-	      // alert('completed')
-      },
+      // complete: function(data){
+	     //  // alert('completed')
+      // },
 
       denied: function(data){
         $('#menu').css('background-color','rgb(0,125,208)');
@@ -84,8 +89,9 @@ $(function() {
       return false
     e.preventDefault();
   });
-
 });
+
+
 function gcm_reg(){
   var token = window.localStorage.getItem('login_token');
   var user_id = window.localStorage.getItem('id');
