@@ -1,0 +1,73 @@
+<ion-view title="{{title}}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header" style="background-color:rgb(240,241,248);" >
+        <div style="float:left;width:100%;padding:1%;border:1px dashed black;margin-top:3%;">
+            <div class="row">
+                <div class="col col-50"><span style="color:blue;">Last Inventory : </span></div>
+                <div class="col col-50">{{reported_at}}</div>
+            </div>
+            <div class="row">
+                <div class="col col-20">Inv</div>
+                <div class="col col-30">Pig Deaths</div>
+                <div class="col col-30">Sick Pigs</div>
+                <div class="col col-20">Intials</div>
+                
+            </div>
+            <div class="row">
+                <div class="col col-20">{{total_inventory}}</div>
+                <div class="col col-30">{{pig_death}}</div>
+                <div class="col col-30">{{pig_sick}}</div>
+                <div class="col col-20">{{Intials}}</div>
+                
+            </div>
+        </div>
+        <!-- <label class="item item-input" style="background-color:rgb(240,241,248);border:none;margin-left:3%;">
+         Date
+         <input type="date"  value="{{inventorydate.text}}">
+         
+         </label>-->
+        <span style="float:left;margin-left:3%;margin-top:5%;"> Date  : {{inventorydate.text}}</span>
+        <label class="item item-input" style="background-color:rgb(240,241,248);border:none;margin-left:3%;">
+            Dead Pigs :
+            
+            {{pignodeath.text}}
+        </label>
+        <div id="pigdeathsDiv" style="float:left;width:80%;margin-left:10%;margin-right:10%;" class="list">
+            <div ng-repeat="pigdeath in pigDeathObject" style="float:left;width:100%;">
+                <span style="float:left">{{pigdeath.pigname}}</span><a href="#/app/inventory4/{{barn_id}}" style="float:right">{{pigdeath.reason}}</a>
+            </div>
+            
+        </div>
+        <label class="item item-input" style="background-color:rgb(240,241,248);border:none;margin-left:3%;">
+            Sick Pigs :
+            {{pignotreat.text}}
+        </label>
+        <div id="pigtreatDiv"style="float:left;width:80%;margin-left:10%;margin-right:10%;" class="list">
+            <div ng-repeat="pigtreat in PigTreatObject" style="float:left;width:100%;">
+                <span style="float:left">{{pigtreat.pigname}}</span><a style="float:right" href="#/app/inventory6/{{barn_id}}">{{pigtreat.Treat}}</a>
+            </div>
+        </div>
+        <input id="review_init" type="text" placeholder="Initials"  style="width:90%;margin-left:5%;border-radius:5px;"/>
+        
+        <div class="row" style="margin-top:10%;">
+            
+            <div class="col col-40">
+                <!--<a   ng-click="goBack()" style="border-radius:5px;padding:9% 35%;margin-top:10%;background-color:white;color:black;width:100%;">Back</a>-->
+                <a href="#/app/barnHome/{{barn_id}}" style="border-radius:5px;padding:9% 35%;margin-top:10%;background-color:white;color:black;width:100%;">Cancel</a>
+            </div>
+            <div class="col col-40">
+                <a  style="border-radius:5px;padding:9% 35%;margin-top:10%;background-color:white;color:black;width:100%;" ng-click="submitInventory()">
+                    Submit
+                </a>
+            </div>
+        </div>
+        <!--<div class="bar bar-footer" style="background-color:rgb(240,241,248);border:none;">
+            <a class="button button-outline button-light" href="#/app/barnHome/{{barn_id}}" style="background-color:white;color:black;width:80%;margin-left:10%;"> Cancel</button>
+                </div>-->
+        
+    </ion-content>
+    
+
+</ion-view>
