@@ -22,11 +22,11 @@
                 
             </div>
         </div>
-        <label class="item item-input" style="background-color:rgb(240,241,248);border:none;margin-left:3%;">
+        <label class="item item-input" style="background-color:rgb(240,241,248);border:none;">
             
-            Date
+                     <div class="input-label" style="font-weight:normal;margin-left:2%;font-size:16px;">  Shipment Date : </div>
             
-            <input type="date" ng-model="shipmentdate" ng-value="{{shipmentdate}}" id="shipmentDate">
+            <input type="date" ng-model="shipmentdate.text" id="shipmentDate">
                 </label>
         <!--<span style="float:left;margin-left:3%;margin-top:5%;"> Date  : {{inventorydate.text}}</span>-->
         <span style="float:left;width:80%;padding-left:5%;padding-top:3%;" validNumber>Number of Pigs in Shipment</span>

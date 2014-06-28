@@ -124,7 +124,7 @@ angular.module('starter.controllers', ['ionic'])
                                              }
                                              else
                                              {
-                                             result += "<li  id='locationsli" + data[j].location_id + "' style='width:100%;float:left;border-bottom:1px solid #c3c3c3;padding:5%;padding-left:40px'><a style='width:100%;float:left' id='" + data[j].location_id+ "' class='locationanch'><img src='img/"+data[j].system_status+"1.png' style='margin-right:20px;float:left;'/>" + data[j].name + "</a></li>";
+                                             result += "<li  id='locationsli" + data[j].location_id + "' style='width:100%;float:left;border-bottom:1px solid #c3c3c3;padding:5%;padding-left:40px'><a style='width:100%;float:left;' id='" + data[j].location_id+ "' class='locationanch'><img src='img/"+data[j].system_status+"1.png' style='margin-right:20px;float:left;'/>" + data[j].name + "</a></li>";
                                              }
                                              $scope.getBarrns(data[j].location_id,data[j].system_status);
                                              j++;
@@ -154,11 +154,11 @@ angular.module('starter.controllers', ['ionic'])
                              var result;
                              if(st=="OK")
                              {
-                             result = "<ul  id='barnsul" + id + "'  style='display:none'>";
+                             result = "<ul  id='barnsul" + id + "'  style='display:none;background-color:rgb(131,155,207);margin-top:5%;float:left;'>";
                              }
                              else
                              {
-                             result = "<ul  id='barnsul" + id + "' >";
+                             result = "<ul  id='barnsul" + id + "' style='background-color:rgb(131,155,207);margin-top:5%;float:left;'>";
                              }
                              
                              var j = 0;
@@ -176,10 +176,10 @@ angular.module('starter.controllers', ['ionic'])
 //                                             alert(barnDetails);
                                              if((j+1)==data.length)
                                              {
-                                             result += "<li style='width:100%;float:left;padding:5%;padding-left:40px'><a style='width:100%;float:left;text-decoration:none;color:black;' href='#/app/barnHome/"+data[j].barn_id+"'><img src='img/"+data[j].system_status+"1.png' style='margin-right:15px;float:left;'/>" + data[j].name + "</a></li>";
+                                             result += "<li style='width:100%;float:left;padding-top:5%;background-color:rgb(131,155,207);padding-right:5%;padding-bottom:5%;margin-left:7%;'><a style='width:100%;float:left;text-decoration:none;color:white;padding-left:20px;' href='#/app/barnHome/"+data[j].barn_id+"'><img src='img/"+data[j].system_status+"1.png' style='margin-right:15px;float:left;'/>" + data[j].name + "</a></li>";
                                              }
                                              else{
-                                             result += "<li style='width:100%;float:left;border-bottom:1px solid #c3c3c3;padding:5%;padding-left:40px'><a href='#/app/barnHome/"+data[j].barn_id+"' style='width:100%;float:left;text-decoration:none;color:black;'><img src='img/"+data[j].system_status+"1.png' style='margin-right:15px;float:left;' />" + data[j].name + "</a></li>";
+                                             result += "<li style='border-bottom:1px solid #c3c3c3;width:100%;float:left;padding-top:5%;background-color:rgb(131,155,207);padding-right:5%;padding-bottom:5%;margin-left:7%;'><a href='#/app/barnHome/"+data[j].barn_id+"' style='width:100%;float:left;text-decoration:none;color:white;padding-left:20px;'><img src='img/"+data[j].system_status+"1.png' style='margin-right:15px;float:left;' />" + data[j].name + "</a></li>";
                                              }
                                              j++;
                                              });
@@ -521,8 +521,8 @@ angular.module('starter.controllers', ['ionic'])
             
             }
             }
-            $scope.date ={text: $filter("date")(Date.now(), 'MMM dd,yyyy')};
-             $scope.shipmentdate ={text: $filter("date")(Date.now(), 'MMM dd,yyyy')};
+            $scope.date ={text: $filter("date")(Date.now(), 'yyyy-MM-dd')};
+             $scope.shipmentdate ={text: $filter("date")(Date.now(), 'yyyy-MM-dd')};
 //            alert($scope.date.text);
             var bid= $stateParams.barn_id;
             
@@ -869,7 +869,9 @@ angular.module('starter.controllers', ['ionic'])
                               });
             
             $scope.inventorydate={text:$rootScope.inventorydate.text};
-            
+            $scope.pigdeathStatus="none";
+            $scope.pigtreatStatus="none";
+ 
             if(window.localStorage["PigDeathsCount"]>0)
             {
             //alert("true");
@@ -888,13 +890,15 @@ angular.module('starter.controllers', ['ionic'])
             }
             //            alert($rootScope.testValue);
             $scope.pigDeathObject=tempJSON;
-            
+            $scope.pigdeathStatus="block";
             }
             else
             {
             //   alert("flase");
             $scope.pignodeath={text:"No"};
             $scope.pigDeathObject=[];
+            $scope.pigdeathStatus="none";
+            
             }
             
             
@@ -905,11 +909,12 @@ angular.module('starter.controllers', ['ionic'])
             if(window.localStorage["PigTreatsCount"]>0)
             {
             $scope.pignotreat={text:window.localStorage["PigTreatsCount"]};
-            
+            $scope.pigtreatStatus="block";
             }
             else
             {
             $scope.pignotreat={text:"No"};
+            $scope.pigtreatStatus="none";
             }
             //alert($scope.pignotreat.text);
             

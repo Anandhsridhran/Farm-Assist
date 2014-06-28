@@ -28,13 +28,13 @@
          <input type="date"  value="{{inventorydate.text}}">
          
          </label>-->
-        <span style="float:left;margin-left:3%;margin-top:5%;"> Date  : {{inventorydate.text}}</span>
+        <span style="float:left;margin-left:5%;margin-top:5%;font-size:16px;"> Inventory Date  : {{inventorydate.text}}</span>
         <label class="item item-input" style="background-color:rgb(240,241,248);border:none;margin-left:3%;">
             Dead Pigs :
             
             {{pignodeath.text}}
         </label>
-        <div id="pigdeathsDiv" style="float:left;width:80%;margin-left:10%;margin-right:10%;" class="list">
+        <div id="pigdeathsDiv" style="float:left;width:80%;margin-left:10%;margin-right:10%;display:{{pigdeathStatus}}" class="list">
             <div ng-repeat="pigdeath in pigDeathObject" style="float:left;width:100%;">
                 <span style="float:left">{{pigdeath.pigname}}</span><a href="#/app/inventory4/{{barn_id}}" style="float:right">{{pigdeath.reason}}</a>
             </div>
@@ -44,7 +44,7 @@
             Sick Pigs :
             {{pignotreat.text}}
         </label>
-        <div id="pigtreatDiv"style="float:left;width:80%;margin-left:10%;margin-right:10%;" class="list">
+        <div id="pigtreatDiv"style="float:left;width:80%;margin-left:10%;margin-right:10%;display:{{pigtreatStatus}}" class="list">
             <div ng-repeat="pigtreat in PigTreatObject" style="float:left;width:100%;">
                 <span style="float:left">{{pigtreat.pigname}}</span><a style="float:right" href="#/app/inventory6/{{barn_id}}">{{pigtreat.Treat}}</a>
             </div>

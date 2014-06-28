@@ -7,23 +7,17 @@
                     <img src="img/farm_assist_logo.png">
                         </div>
                 <br/>
-                <form name="myForm">
                 <label class="item item-input">
                     <input ng-model='name.text' name="userName" type="text" placeholder="User Name"  style="border-radius:10px;" required>
-                        <span class="error" ng-show="myForm.userName.$error.required" style="color:red;">
-                            *</span><br>
-                        </label>
+                </label>
                 <br/>
                 <label class="item item-input">
                     <input ng-model='password.text' name="password" type="password" placeholder="Password" style="border-radius:10px;" required>
-                        <span class="error" ng-show="myForm.password.$error.required" style="color:red;">
-                            *</span>
                         </label>
                 <br/>
                 <button ng-click="submitbutton()" class="button button-block button-positive">
                     Submit
                 </button>
-                </form>
             </div>
             
         </ion-content>
